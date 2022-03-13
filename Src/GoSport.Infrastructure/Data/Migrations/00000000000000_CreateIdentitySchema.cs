@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace GoSport.Data.Migrations
+namespace GoSport.Infrastructure.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {
