@@ -12,7 +12,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<User>(options =>
-     options.SignIn.RequireConfirmedAccount = false)   
+   {
+       options.SignIn.RequireConfirmedAccount = false;
+       options.Password.RequireLowercase = false;
+       options.Password.RequireUppercase = false;
+       options.Password.RequireNonAlphanumeric = false;
+       options.Password.RequiredLength = 5;
+       options.Password.RequiredUniqueChars = 0;
+       options.User.RequireUniqueEmail = false;
+   })
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
