@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GoSport.Core\GoSport.Core.csproj" />
+    <ProjectReference Include="..\GoSport.Infrastructure\GoSport.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
