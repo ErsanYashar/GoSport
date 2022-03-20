@@ -1,0 +1,123 @@
+﻿
+@using GoSport.Core.Constants
+@using GoSport.Core.ViewModel.Town
+@using GoSport.Core.ViewModel.User
+
+@model RegisterViewModel
+@{
+   var town = ViewData[ConstCore.Town] as IEnumerable<SelectTownViewModel>;
+}
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="row text-center">
+
+<h1>@ViewData["Title"]</h1>
+ <form asp-area="Identity" asp-controller="Users" asp-action="Register" method="post">
+    <div class="row text-center">
+            <h2>Create a new account.</h2>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-md-4 offset-md-2 form-group">
+            <label asp-for="Username" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input asp-for="Username" class="form-control" placeholder="Username" />
+            </div>
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                </div>
+                <input asp-for="Email" class="form-control" placeholder="Email" />
+            </div>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-4 offset-md-2 form-group">
+            <label asp-for="Password" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input asp-for="Password" class="form-control" placeholder="Password" />
+            </div>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 form-group">
+            <label asp-for="ConfirmPassword" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+            </div>
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-4 offset-md-2 form-group">
+            <label asp-for="FirstName" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="far fa-user"></i></span>
+                </div>
+                <input asp-for="FirstName" class="form-control" placeholder="First Name" />
+            </div>
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 form-group">
+            <label asp-for="LastName" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="far fa-user"></i></span>
+                </div>
+                <input asp-for="LastName" class="form-control" placeholder="Last Name" />
+            </div>
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-4 offset-md-2 form-group">
+            <label asp-for="BirthDate" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-birthday-cake"></i></span>
+                </div>
+                <input asp-for="BirthDate" class="form-control" placeholder="Birth Date" />
+            </div>
+            <span asp-validation-for="BirthDate" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 form-group">
+            <label asp-for="TownId" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-globe"></i></span>
+                </div>
+                <select asp-for="TownId" class="form-control">
+                    <option selected>Select Town</option>
+                    @foreach (var name in town)
+                    {
+                        <option value="@name.Id">@name.Name</option>
+                    }
+                </select>
+            </div>
+            <span asp-validation-for="TownId" class="text-danger"></span>
+        </div>
+    </div>
+    <br/>
+    <div class="form-group text-center">
+        <input type="submit" value="Create Account" class="btn btn-primary" />
+    </div>
+ </form>
+  </div>
+
+@*<div class="text-center">
+    <h6>Already have an account? <a asp-area="Identity" asp-controller="Users" asp-action="SignIn">Sign In</a></h6>
+</div>*@
