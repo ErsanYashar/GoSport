@@ -9,5 +9,7 @@ namespace GoSport.Core.Constants
     public static class ConstCore
     {
         public const string Town = "Towns";
+
+        public const string UsernameEror = "Username already exists!";
     }
 }

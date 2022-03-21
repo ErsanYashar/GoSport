@@ -38,6 +38,7 @@ namespace GoSport.Core.ViewModel.User
         public string LastName { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
 
         [Required]
