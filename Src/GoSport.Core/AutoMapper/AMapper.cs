@@ -1,12 +1,13 @@
-﻿using AutoMapper;
-using GoSport.Core.ViewModel.User;
+﻿using GoSport.Core.ViewModel.User;
 using GoSport.Infrastructure.Data.DateModels;
+using AutoMapper;
+
 
 namespace GoSport.Core.AutoMapper
 {
-    public class AutoMapper : Profile
+    public class AMapper : Profile
     {
-        public AutoMapper()
+        public AMapper()
         {
             this.CreateMap<User, RegisterViewModel>().ReverseMap();
         }

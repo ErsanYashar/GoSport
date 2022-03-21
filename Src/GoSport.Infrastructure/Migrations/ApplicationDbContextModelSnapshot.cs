@@ -282,7 +282,7 @@ namespace GoSport.Infrastructure.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TownId")
+                    b.Property<int>("TownId")
                         .HasColumnType("int");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -556,9 +556,13 @@ namespace GoSport.Infrastructure.Migrations
 
             modelBuilder.Entity("GoSport.Infrastructure.Data.DateModels.User", b =>
                 {
-                    b.HasOne("GoSport.Infrastructure.Data.DateModels.Town", null)
+                    b.HasOne("GoSport.Infrastructure.Data.DateModels.Town", "Town")
                         .WithMany("Users")
-                        .HasForeignKey("TownId");
+                        .HasForeignKey("TownId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Town");
                 });
 
             modelBuilder.Entity("GoSport.Infrastructure.Data.DateModels.Venue", b =>

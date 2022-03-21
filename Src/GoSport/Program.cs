@@ -1,3 +1,5 @@
+using AutoMapper;
+using GoSport.Core.AutoMapper;
 using GoSport.Core.Services;
 using GoSport.Core.Services.Interfaces;
 using GoSport.Infrastructure.Data;
@@ -29,6 +31,10 @@ builder.Services.AddDefaultIdentity<User>(options =>
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+var mapperConfig = new MapperConfiguration(m => m.AddProfile(new AMapper()));
+var mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 
 var app = builder.Build();

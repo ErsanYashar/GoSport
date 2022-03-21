@@ -1,4 +1,5 @@
-﻿using GoSport.Core.Constants;
+﻿using AutoMapper;
+using GoSport.Core.Constants;
 using GoSport.Core.Services.Interfaces;
 using GoSport.Core.ViewModel.User;
 using GoSport.Infrastructure.Data;
@@ -6,10 +7,12 @@ using GoSport.Infrastructure.Data.DateModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
+
+
 namespace GoSport.Areas.Identity.Controllers
 {
     [Area("Identity")]
-    public class UsersController : Microsoft.AspNetCore.Mvc.Controller
+    public class UsersController : Controller
     {
 
         private readonly UserManager<User> userManager;
@@ -17,14 +20,16 @@ namespace GoSport.Areas.Identity.Controllers
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly ApplicationDbContext dbContex;
         private readonly ITown townService;
+        private readonly IMapper mapper;
 
-        public UsersController(UserManager<User> userManager, ApplicationDbContext dbContex, ITown townService, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager)
+        public UsersController(UserManager<User> userManager, ApplicationDbContext dbContex, ITown townService, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IMapper mapper)
         {
             this.userManager = userManager;
             this.dbContex = dbContex;
             this.townService = townService;
             this.roleManager = roleManager;
             this.signInManager = signInManager;
+            this.mapper = mapper;
         }
 
 
@@ -62,27 +67,7 @@ namespace GoSport.Areas.Identity.Controllers
                 return this.View(model);
             }
 
-            //var user = dbContex.Users
-            //    .Select(x => new User
-            //    {
-            //        Username = model.Username,
-            //        Password = model.Password,
-            //        ConfirmPassword = model.ConfirmPassword,
-            //        BirthDate = model.BirthDate,
-            //        FirstName = model.FirstName,
-            //        LastName = model.LastName,
-            //        Email = model.Email,
-            //        TownId = model.TownId,
-            //    }).FirstOrDefault();
-
-            var user = new User
-            {
-                UserName = model.Username,
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Email = model.Email,
-                BirthDate = model.BirthDate,
-            };
+            var user = this.mapper.Map<User>(model);
 
             var result = await this.userManager.CreateAsync(user, model.Password);
 
