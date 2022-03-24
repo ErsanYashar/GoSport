@@ -4,6 +4,7 @@ using GoSport.Core.Services.Interfaces;
 using GoSport.Core.ViewModel.User;
 using GoSport.Infrastructure.Data;
 using GoSport.Infrastructure.Data.DateModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -109,6 +110,13 @@ namespace GoSport.Areas.Identity.Controllers
                 return this.View(model);
             }
 
+            return this.RedirectToAction("Index", "Home", new { area = "" });
+        }
+
+        [Authorize]
+        public async Task<IActionResult> SignOut()
+        {
+            await this.signInManager.SignOutAsync();
             return this.RedirectToAction("Index", "Home", new { area = "" });
         }
     }
