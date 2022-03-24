@@ -32,13 +32,6 @@ namespace GoSport.Areas.Identity.Controllers
             this.mapper = mapper;
         }
 
-
-        public IActionResult Index()
-        {
-
-            return this.View();
-        }
-
         public IActionResult Register()
         {
             this.ViewData[ConstCore.Town] = this.townService.GetAllTownNames();
@@ -87,6 +80,31 @@ namespace GoSport.Areas.Identity.Controllers
             else
             {
                 this.ViewData["Error"] = ConstCore.UsernameEror;
+                this.ViewData[ConstCore.Town] = this.townService.GetAllTownNames();
+                return this.View(model);
+            }
+
+            return this.RedirectToAction("Index", "Home", new { area = "" });
+        }
+
+        public IActionResult SignIn()
+        {          
+            return this.View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SignIn(SignInViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            var signIn = await this.signInManager.PasswordSignInAsync(model.Username, model.Password, true, true);
+
+            if (!signIn.Succeeded)
+            {
+                this.ViewData["Error"] = ConstCore.UserOrPasInv;
                 this.ViewData[ConstCore.Town] = this.townService.GetAllTownNames();
                 return this.View(model);
             }

@@ -11,6 +11,13 @@
     ViewData["Title"] = "Register";
 }
 
+@if (this.ViewData.ContainsKey("Error"))
+{
+    <div class="col-md-6 offset-3 alert alert-danger text-center">
+        <strong>@this.ViewData["Error"]</strong>
+    </div>
+}
+
 <div class="row text-center">
 
 <h1>@ViewData["Title"]</h1>

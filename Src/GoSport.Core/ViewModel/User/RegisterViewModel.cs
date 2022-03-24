@@ -42,6 +42,7 @@ namespace GoSport.Core.ViewModel.User
         public DateTime BirthDate { get; set; }
 
         [Required]
+        [Display(Name = "Town")]
         public int TownId { get; set; }
     }
 }

@@ -11,5 +11,6 @@ namespace GoSport.Core.Constants
         public const string Town = "Towns";
 
         public const string UsernameEror = "Username already exists!";
+        public static string UserOrPasInv = "Username or password are invalid!";
     }
 }
