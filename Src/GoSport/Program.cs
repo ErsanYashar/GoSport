@@ -32,6 +32,14 @@ builder.Services.AddDefaultIdentity<User>(options =>
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = new PathString("/Identity/Users/SignIn");
+    options.AccessDeniedPath = new PathString("/Home/Access");
+});
+
+
 var mapperConfig = new MapperConfiguration(m => m.AddProfile(new AMapper()));
 var mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
@@ -65,7 +73,7 @@ app.UseAuthorization();
 //    defaults: new { controller = "User", action = "Register" });
 
 app.MapControllerRoute(
-   name: "Area",
+   name: "areas",
    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(

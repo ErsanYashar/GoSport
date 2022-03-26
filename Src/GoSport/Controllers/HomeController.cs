@@ -20,6 +20,11 @@ namespace GoSport.Controllers
 
         public IActionResult Index()
         {
+            if (this.User.IsInRole("Admin"))
+            {
+                return this.RedirectToAction("Index", "Home", new { area = "Admin" });
+            }
+
             this.ViewData[ConstCore.Town] = this.townService.GetAllTownNames();
             return this.View();
         }
