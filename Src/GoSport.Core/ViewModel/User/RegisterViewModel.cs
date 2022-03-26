@@ -23,22 +23,26 @@ namespace GoSport.Core.ViewModel.User
 
         [Required]
         [DataType(DataType.Password)]
+        [Display(Name = "Confirm Password")]
         [Compare(ConstViewModel.RegisterAccountCompare, ErrorMessage = ConstViewModel.ConfirmPasswordErrorMessage)]
         public string ConfirmPassword { get; set; }
 
         [Required]
+        [Display(Name ="First Name")]
         [MinLength(ConstViewModel.MinFirstNameLength, ErrorMessage = ConstViewModel.FirstNameMinLengthErrorMessage)]
         [MaxLength(ConstViewModel.MaxFirstNameLength, ErrorMessage = ConstViewModel.FirstNameMaxLengthErrorMessage)]
         public string FirstName { get; set; }
 
 
         [Required]
+        [Display(Name = "Last Name")]
         [MinLength(ConstViewModel.MinLastNameLength, ErrorMessage = ConstViewModel.LastNameMinLengthErrorMessage)]
         [MaxLength(ConstViewModel.MaxLastNameLength, ErrorMessage = ConstViewModel.LastNameMaxLengthErrorMessage)]
         public string LastName { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
+        [Display(Name = "Birth Date")]
         public DateTime BirthDate { get; set; }
 
         [Required]

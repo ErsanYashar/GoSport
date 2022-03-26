@@ -1,39 +1,35 @@
 ﻿@using GoSport.Infrastructure.Data.DateModels
 @using Microsoft.AspNetCore.Identity
 
-
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
-<div class="collapse navbar-collapse" id="navbarResponsive">
-   @* @if (!this.User.IsInRole(Role.Administrator) && !this.User.IsInRole(Role.Editor))
+    
+ <div class="collapse navbar-collapse" id="navbar">
+
+    @if (!this.User.IsInRole("Admin"))
     {
         <ul class="nav navbar-nav text-right">
             <li class="nav-link">
-                <a asp-area="Sport" asp-controller="Sports" asp-action="AllSports" class="nav-link"><i class="fas fa-futbol"></i> Sports</a>
+                <a asp-area="Sport" asp-controller="Sports" asp-action="AllSports" class="nav-link"><i class="fas fa-running"></i> Sports</a>
             </li>
             <li class="nav-link">
-                <a asp-area="" asp-controller="Venues" asp-action="AllVenues" class="nav-link"><i class="fas fa-landmark"></i> Venues</a>
+                <a asp-area="" asp-controller="Venues" asp-action="AllVenues" class="nav-link"><i class="fas fa-archway"></i> Venues</a>
             </li>
         </ul>
-    }*@
+    }
 
- @*  @if (SignInManager.IsSignedIn(User))
+    @if (SignInManager.IsSignedIn(User))
     {
-        if (this.User.IsInRole(Role.Administrator))
+        if (this.User.IsInRole("Admin"))
         {
-            <partial name="_NavbarAdministratorPartial" />
-        }
-        else if (this.User.IsInRole(@Role.Editor))
-        {
-            <partial name="_NavbarEditorPartial" />
+            <partial name="_NavbarAdminPartial" />
         }
         else
         {
+
             <ul class="nav navbar-nav text-right">
-                <li class="nav-link">
-                    <a asp-area="" asp-controller="Results" asp-action="MyResults" class="nav-link"><i class="fas fa-poll"></i> My Results</a>
-                </li>
+                
                 <li class="nav-link">
                     <a asp-area="" asp-controller="Events" asp-action="MyEvents" class="nav-link"><i class="fas fa-calendar-alt"></i> My Events</a>
                 </li>
@@ -49,14 +45,14 @@
         }
     }
     else
-    {*@
+    {
         <ul class="nav navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" asp-area="Identity" asp-controller="User" asp-action="Register"><i class="fas fa-user-plus"></i>Register</a>
+                <a class="nav-link" asp-area="Identity" asp-controller="Users" asp-action="Register"><i class="fas fa-user-plus"></i>Register</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-area="Identity" asp-controller="User" asp-action="SignIn"><i class="fas fa-user"></i> Sign In</a>
+                <a class="nav-link" asp-area="Identity" asp-controller="Users" asp-action="SignIn"><i class="fas fa-user"></i> Sign In</a>
             </li>
         </ul>
-@*    }*@
-</div>
+    }   
+ </div>

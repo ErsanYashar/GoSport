@@ -119,5 +119,14 @@ namespace GoSport.Areas.Identity.Controllers
             await this.signInManager.SignOutAsync();
             return this.RedirectToAction("Index", "Home", new { area = "" });
         }
+
+        [Authorize]
+        public IActionResult UpdateAccount()
+        {
+            var user = this.userManager.FindByNameAsync(this.User.Identity.Name).GetAwaiter().GetResult();
+            var model = this.mapper.Map<UpdateAccountViewModel>(user);
+            this.ViewData[ConstCore.Town] = this.townService.GetAllTownNames();
+            return this.View(model);
+        }
     }
 }
