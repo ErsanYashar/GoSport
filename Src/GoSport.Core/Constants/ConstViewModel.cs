@@ -33,5 +33,8 @@ namespace GoSport.Core.Constants
         public const string LastNameMinLengthErrorMessage = $"The LastName must be at least 2 characters long!";
         public const string LastNameMaxLengthErrorMessage = $"LastName should not be longer than 30 characters!";
 
+        public const string ChangePassword = "NewPassword";
+        public const string ConfirmPasswordError = "The password and confirmation password do not match.";
+
     }
 }

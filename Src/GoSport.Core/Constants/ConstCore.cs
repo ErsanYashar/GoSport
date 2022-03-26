@@ -11,6 +11,9 @@ namespace GoSport.Core.Constants
         public const string Town = "Towns";
 
         public const string UsernameEror = "Username already exists!";
-        public static string UserOrPasInv = "Username or password are invalid!";
+        public const string UserOrPasInv = "Username or password are invalid!";
+        public const string Message = "Your profile has been updated!";
+        public const string PasswordChanged= "Password was not changed!";
+        public const string PasswordWasChanged = "Password was changed successfully!";
     }
 }

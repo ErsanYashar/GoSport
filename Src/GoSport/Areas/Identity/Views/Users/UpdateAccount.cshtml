@@ -7,6 +7,13 @@
    var town = ViewData[ConstCore.Town] as IEnumerable<SelectTownViewModel>;
 }
 
+@if (this.ViewData.ContainsKey("Message"))
+{
+    <div class="col-md-6 offset-3 alert alert-success text-center">
+        <strong>@this.ViewData["Message"]</strong>
+    </div>
+}
+
 @if (this.ViewData.ContainsKey("Error"))
 {
     <div class="col-md-6 offset-3 alert alert-danger text-center">
@@ -29,7 +36,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                 </div>
-                <input asp-for="Username" class="form-control" placeholder="Username" readonly style="background-color: gray"/>
+                <input asp-for="Username" class="form-control" placeholder="Username" readonly style="background-color: light"/>
             </div>
             <span asp-validation-for="Username" class="text-danger"></span>
         </div>
@@ -111,3 +118,7 @@
         <input type="submit" value="Update Profile" class="btn btn-primary" />
     </div>
 </form>
+
+<div class="text-center">
+    <a asp-area="Identity" asp-controller="Users" asp-action="ChangePassword" class="btn btn-link">Change Password</a>
+</div>

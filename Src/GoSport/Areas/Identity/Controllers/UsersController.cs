@@ -128,5 +128,60 @@ namespace GoSport.Areas.Identity.Controllers
             this.ViewData[ConstCore.Town] = this.townService.GetAllTownNames();
             return this.View(model);
         }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> UpdateAccount(UpdateAccountViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                this.ViewData[ConstCore.Town] = this.townService.GetAllTownNames();
+                return this.View(model);
+            }
+
+            var user = await this.userManager.FindByNameAsync(this.User.Identity.Name);
+
+            user.Email = model.Email;
+            user.PhoneNumber = model.PhoneNumber;
+            user.BirthDate = model.BirthDate;
+            user.TownId = model.TownId;
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+
+            await this.userManager.UpdateAsync(user);
+
+            this.ViewData["Message"] = ConstCore.Message;
+            this.ViewData[ConstCore.Town] = this.townService.GetAllTownNames();
+            return this.View(model);
+        }
+
+
+        [Authorize]
+        public IActionResult ChangePassword()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult ChangePassword(ChangePasswordViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            var user = this.userManager.FindByNameAsync(this.User.Identity.Name).GetAwaiter().GetResult();
+            var ChangedPassword = this.userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword).GetAwaiter().GetResult();
+
+            if (!ChangedPassword.Succeeded)
+            {
+                this.ViewData["Error"] = ConstCore.PasswordChanged;
+                return this.View(model);
+            }
+
+            this.ViewData["Message"] = ConstCore.PasswordWasChanged;
+            return this.View();
+        }
     }
 }
