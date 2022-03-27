@@ -1,0 +1,62 @@
+﻿@using GoSport.Core.ViewModel.Town
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+@model IEnumerable<TownViewModel>
+
+@{
+    ViewData["Title"] = "Towns";
+}
+
+<h1 class="text-center text-primary">Towns</h1>
+
+<p class="text-center">
+    <a asp-area="" asp-controller="Towns" asp-action="Add" class="btn btn-primary btn-lg">Add Town</a>
+</p>
+
+<table class="table mx-auto table-hover table-bordered table-striped">
+    <thead>
+        <tr class="row table-primary">
+            <th class="col-md-4 text-center">
+                Town Name
+            </th>
+            <th class="col-md-4 text-center">
+                zipCode
+            </th>
+            <th class="col-md-4 text-center">
+                Actions
+            </th>
+        </tr>
+    </thead>
+      <tbody>
+        @foreach (var town in Model)
+        {
+             <tr class="row table-striped">
+                <td class="col-md-4 text-center">
+                    @town.Name
+                </td>
+                <td class="col-md-4 text-center">
+                    @town.zipCode
+                </td>
+                <td class="col-md-4 text-center">
+                    <a asp-area="" asp-controller="Towns" asp-action="Edit" asp-route-id="@town.Id" class="btn btn-primary">Edit</a> 
+                    <a asp-area="" asp-controller="Towns" asp-action="Delete" asp-route-id="@town.Id" class="btn btn-danger">Delete</a> 
+                </td>
+            </tr>
+        }
+     </tbody>
+</table>
+
+<div class="text-center">
+    @Html.PagedListPager((IPagedList)@Model, page => Url.Action("All", new { page = page }),
+        new PagedListRenderOptions
+        {
+            DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+            DisplayLinkToLastPage = PagedListDisplayMode.Always,
+            DisplayLinkToNextPage = PagedListDisplayMode.Never,
+            DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+            UlElementClasses = new string[] { "pagination", "justify-content-center" },
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" },
+        })
+</div>

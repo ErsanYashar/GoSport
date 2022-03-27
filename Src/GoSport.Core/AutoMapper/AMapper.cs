@@ -1,7 +1,7 @@
 ﻿using GoSport.Core.ViewModel.User;
 using GoSport.Infrastructure.Data.DateModels;
 using AutoMapper;
-
+using GoSport.Core.ViewModel.Town;
 
 namespace GoSport.Core.AutoMapper
 {
@@ -9,6 +9,9 @@ namespace GoSport.Core.AutoMapper
     {
         public AMapper()
         {
+
+            //user
+
             this.CreateMap<User, RegisterViewModel>().ReverseMap();
 
             this.CreateMap<UpdateAccountViewModel, User>()
@@ -19,6 +22,10 @@ namespace GoSport.Core.AutoMapper
               .ForMember(uv => uv.Id, u => u.MapFrom(x => x.Id))
               .ForMember(uv => uv.Username, u => u.MapFrom(x => x.UserName))
               .ReverseMap();
+
+            //town
+
+            this.CreateMap<Town, TownViewModel>().ReverseMap();
         }
     }
 }

@@ -191,7 +191,7 @@ namespace GoSport.Areas.Identity.Controllers
             var users = this.usersService.GetAllUsers();
 
             var pageNumber = page ?? 1;
-            var usersPage = users.ToPagedList(pageNumber, 20);
+            var usersPage = users.ToPagedList(pageNumber, 15);
 
             this.ViewData["Users"] = usersPage;
 

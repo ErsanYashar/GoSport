@@ -1,23 +1,23 @@
-﻿using GoSport.Core.Services.Interfaces;
+﻿using AutoMapper;
+using GoSport.Core.Services.Interfaces;
 using GoSport.Core.ViewModel.Town;
 using GoSport.Infrastructure.Data;
+using GoSport.Infrastructure.Data.DateModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace GoSport.Core.Services
 {
-    public class TownService : ITown
+    public class TownService : BaseService, ITown
     {
 
-        private readonly ApplicationDbContext dbContex;
-
-        public TownService(ApplicationDbContext dbContex)
+        public TownService(IMapper mapper, UserManager<User> userManager, ApplicationDbContext context) 
+            : base(mapper, userManager, context)
         {
-            this.dbContex = dbContex;
         }
-
 
         public IEnumerable<SelectTownViewModel> GetAllTownNames()
         {
-            var town = dbContex.Towns
+            var town = Context.Towns
                 .Select(x => new SelectTownViewModel
                 {
                     Id = x.Id,
@@ -26,6 +26,28 @@ namespace GoSport.Core.Services
                 .OrderBy(x => x.Name)
                 .ToList();
                 
+            return town;
+        }
+
+        public IEnumerable<TownViewModel> GetAllTowns()
+        {
+            var towns = this.Context
+                .Towns
+                .OrderBy(t => t.Name)
+                .AsQueryable();
+
+            var townViewModels = this.Mapper.Map<IQueryable<Town>, IEnumerable<TownViewModel>>(towns);
+
+            return townViewModels;
+        }
+
+        public Town AddTown(TownViewModel model)
+        {
+            var town = this.Mapper.Map<Town>(model);
+
+            this.Context.Towns.Add(town);
+            this.Context.SaveChanges();
+
             return town;
         }
     }

@@ -36,5 +36,18 @@ namespace GoSport.Core.Constants
         public const string ChangePassword = "NewPassword";
         public const string ConfirmPasswordError = "The password and confirmation password do not match.";
 
+
+        public const int MinTownNameLength = 2;
+        public const int MaxTownNameLength = 30;
+        public const string TownNameMinErrorMessage = "the name of the city should be can not be less 2 characters";
+        public const string TownReg = "[a-zA-z\\s]+";
+        public const string TownRegErrorMessage = "Town name contains invalid symbols!";
+
+        public const int zipMin = 0;
+        public const int zipMax = 10000;
+        public const string zipErrorMessage = "Тhe code must be between 0 and 10000";
+
+
+
     }
 }
