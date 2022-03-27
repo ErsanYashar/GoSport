@@ -7,8 +7,7 @@ using GoSport.Infrastructure.Data.DateModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-
-
+using X.PagedList;
 
 namespace GoSport.Areas.Identity.Controllers
 {
@@ -21,9 +20,10 @@ namespace GoSport.Areas.Identity.Controllers
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly ApplicationDbContext dbContex;
         private readonly ITown townService;
+        private readonly IUsersService usersService;
         private readonly IMapper mapper;
 
-        public UsersController(UserManager<User> userManager, ApplicationDbContext dbContex, ITown townService, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IMapper mapper)
+        public UsersController(UserManager<User> userManager, ApplicationDbContext dbContex, ITown townService, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IMapper mapper, IUsersService usersService)
         {
             this.userManager = userManager;
             this.dbContex = dbContex;
@@ -31,6 +31,7 @@ namespace GoSport.Areas.Identity.Controllers
             this.roleManager = roleManager;
             this.signInManager = signInManager;
             this.mapper = mapper;
+            this.usersService = usersService;
         }
 
         public IActionResult Register()
@@ -89,7 +90,7 @@ namespace GoSport.Areas.Identity.Controllers
         }
 
         public IActionResult SignIn()
-        {          
+        {
             return this.View();
         }
 
@@ -181,6 +182,19 @@ namespace GoSport.Areas.Identity.Controllers
             }
 
             this.ViewData["Message"] = ConstCore.PasswordWasChanged;
+            return this.View();
+        }
+
+        [Authorize(Roles ="Admin")]
+        public IActionResult All(int? page)
+        {
+            var users = this.usersService.GetAllUsers();
+
+            var pageNumber = page ?? 1;
+            var usersPage = users.ToPagedList(pageNumber, 20);
+
+            this.ViewData["Users"] = usersPage;
+
             return this.View();
         }
     }

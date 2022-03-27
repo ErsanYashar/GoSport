@@ -17,6 +17,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddTransient<ITown, TownService>();
+builder.Services.AddTransient<IUsersService, UsersService>();
+
 
 builder.Services.AddDefaultIdentity<User>(options =>
    {
