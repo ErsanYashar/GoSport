@@ -40,5 +40,12 @@ namespace GoSport.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+        public IActionResult Invalid()
+        {
+            this.ViewData["Message"] = this.TempData["Message"].ToString();
+            return this.View();
+        }
     }
 }

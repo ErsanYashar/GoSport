@@ -50,5 +50,35 @@ namespace GoSport.Core.Services
 
             return town;
         }
+
+        public TownViewModel GetTownById(int id)
+        {
+            var town = this.Context
+                .Towns
+                .FirstOrDefault(t => t.Id == id);
+
+            var townViewModel = this.Mapper.Map<TownViewModel>(town);
+
+            return townViewModel;
+        }
+
+        public TownViewModel UpdateTown(TownViewModel model)
+        {
+            var town = this.Context
+                .Towns
+                .FirstOrDefault(t => t.Id == model.Id);
+
+            if (town == null)
+            {
+                return null;
+            }
+
+            town.Name = model.Name;
+            town.zipCode = model.zipCode;
+
+            this.Context.SaveChanges();
+            var townViewModel = this.Mapper.Map<TownViewModel>(town);
+            return townViewModel;
+        }
     }
 }

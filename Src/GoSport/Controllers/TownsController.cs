@@ -1,4 +1,5 @@
-﻿using GoSport.Core.Services.Interfaces;
+﻿using GoSport.Core.Constants;
+using GoSport.Core.Services.Interfaces;
 using GoSport.Core.ViewModel.Town;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -45,5 +46,41 @@ namespace GoSport.Controllers
             return this.RedirectToAction("All", "Towns", new { area = "" });
         }
 
+        [Authorize(Roles = "Admin")]
+        public IActionResult Edit(int id)
+        {
+            var town = this.townsService.GetTownById(id);
+
+            if (town == null)
+            {
+                this.TempData["Message"] = ConstCore.TownDoesNotExist;
+                return this.RedirectToAction("Invalid", "Home", new { area = "" });
+            }
+
+            return this.View(town);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Edit(TownViewModel model)
+        {
+
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            var town = this.townsService.UpdateTown(model);
+
+            if (town == null)
+            {
+                this.ViewData["Error"] = ConstCore.TownWasNotUpdated;
+                return this.View(model);
+            }
+
+            this.ViewData["Message"] = ConstCore.TownWasUpdated;
+
+            return this.View();
+        }
     }
 }

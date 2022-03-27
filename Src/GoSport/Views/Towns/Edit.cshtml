@@ -1,0 +1,58 @@
+﻿@using GoSport.Core.ViewModel.Town
+@model TownViewModel
+
+@{
+    ViewData["Title"] = "Edit Town";
+}
+
+@if (this.ViewData.ContainsKey("Error"))
+{
+    <div class="col-md-6 offset-3 alert alert-dismissible alert-danger text-center">
+        <strong>@this.ViewData["Error"]</strong>
+    </div>
+}
+@if (this.ViewData.ContainsKey("Message"))
+{
+    <div class="col-md-6 offset-3 alert alert-dismissible alert-success text-center">
+        <strong>@this.ViewData["Message"]</strong>
+    </div>
+}
+
+<h1 class="text-center text-primary">Edit</h1>
+
+<div class="row text-center">
+    <div class="col-md-4 offset-md-4 text-center">
+        <form asp-area="" asp-controller="Towns" asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-city"></i></span>
+                    </div>
+                    <input asp-for="Name" class="form-control" placeholder="Town Name" />
+                </div>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="zipCode" class="control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-mail-bulk"></i></span>
+                    </div>
+                    <input asp-for="zipCode" class="form-control" placeholder="Zip Code" />
+                </div>
+                <span asp-validation-for="zipCode" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Edit Town" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="text-center">
+    <a asp-area="" asp-controller="Towns" asp-action="All">Back to all</a>
+</div>
