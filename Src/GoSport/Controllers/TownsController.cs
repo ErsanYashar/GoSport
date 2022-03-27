@@ -82,5 +82,31 @@ namespace GoSport.Controllers
 
             return this.View();
         }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delete(int id)
+        {
+            var town = this.townsService.GetTownById(id);
+            if (town == null)
+            {
+                this.TempData["Message"] = ConstCore.TownDoesNotExist;
+                return this.RedirectToAction("Invalid", "Home", new { area = ""});
+            }
+
+            return this.View(town);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delete(TownViewModel model)
+        {
+            var isDelete = this.townsService.IsDeleteTown(model);
+            if (!isDelete)
+            {
+                return this.View(model);
+            }
+
+            return this.RedirectToAction("All", "Towns", new { area = ""});
+        }
     }
 }

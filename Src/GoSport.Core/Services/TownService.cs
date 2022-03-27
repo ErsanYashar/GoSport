@@ -80,5 +80,24 @@ namespace GoSport.Core.Services
             var townViewModel = this.Mapper.Map<TownViewModel>(town);
             return townViewModel;
         }
+
+        public bool IsDeleteTown(TownViewModel model)
+        {
+            var town = this.Context
+                .Towns
+                .FirstOrDefault(t => t.Id == model.Id);
+
+            if (town != null)
+            {
+                this.Context.Towns.Remove(town);
+
+                this.Context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
     }
 }

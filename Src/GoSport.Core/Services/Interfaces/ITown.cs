@@ -10,5 +10,6 @@ namespace GoSport.Core.Services.Interfaces
         Town AddTown(TownViewModel model);
         TownViewModel GetTownById(int id);
         TownViewModel UpdateTown(TownViewModel model);
+        bool IsDeleteTown(TownViewModel model);
     }
 }
