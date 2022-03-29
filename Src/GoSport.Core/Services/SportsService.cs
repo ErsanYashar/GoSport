@@ -4,11 +4,6 @@ using GoSport.Core.ViewModel.Sport;
 using GoSport.Infrastructure.Data;
 using GoSport.Infrastructure.Data.DateModels;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GoSport.Core.Services
 {
@@ -30,6 +25,16 @@ namespace GoSport.Core.Services
 
             return sportModel;
 
+        }
+
+        public Sport Add(SportViewModel model)
+        {
+            var sport = this.Mapper.Map<Sport>(model);
+
+            this.Context.Sports.Add(sport);
+            this.Context.SaveChanges();
+
+            return sport;
         }
     }
 }
