@@ -36,5 +36,37 @@ namespace GoSport.Core.Services
 
             return sport;
         }
+
+        public SportViewModel GetSportById(int id)
+        {
+            var sport = this.Context
+                .Sports
+                .FirstOrDefault(s => s.Id == id);
+
+            var sportModel = this.Mapper.Map<SportViewModel>(sport);
+
+            return sportModel;
+        }
+
+        public SportViewModel UpdateSport(SportViewModel model)
+        {
+            var sport = this.Context
+                .Sports
+                .FirstOrDefault(s => s.Id == model.Id);
+
+            if (sport == null)
+            {
+                return null;
+            }
+
+            sport.Name = model.Name;
+            sport.Description = model.Description;
+            sport.ImageSportUrl = model.ImageSportUrl;
+            this.Context.SaveChanges();
+
+            var sportModel = this.Mapper.Map<SportViewModel>(sport);
+
+            return sportModel;
+        }
     }
 }

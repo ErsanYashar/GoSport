@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GoSport.Core.Constants
+﻿namespace GoSport.Core.Constants
 {
     public static class ConstCore
     {
@@ -18,5 +12,9 @@ namespace GoSport.Core.Constants
         public const string TownDoesNotExist = "Town does not exist!";
         public const string TownWasNotUpdated = "Town Was Not Updated";
         public const string TownWasUpdated = "Town Was Updated";
+        public const string SportDoesNotExist = "Sport Does Not Exist";
+        public const string SportWasNotUpdated = "Sport Was Not Updated";
+        public const string SportWasUpdated = "Sport Was Updated";
+
     }
 }

@@ -1,0 +1,33 @@
+﻿@using GoSport.Core.ViewModel.Sport
+@model IList<SportViewModel>
+
+@{
+    ViewData["Title"] = "Sports";
+
+}
+
+<h1 class="text-center text-primary">Sports</h1>
+
+
+    <div class="row">
+        @foreach(var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="card text-center" style="width: 20rem;">
+                    <img class="card-img-top" src="@item.ImageSportUrl" alt="@item.Name">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        @if (@item.Description.Length >= 50)
+                        {
+                            <p class="card-text">@item.Description.Substring(0, 50)...</p>
+                        }
+                        else
+                        {
+                            <p class="card-text">@item.Description</p>
+                        }
+                        <a asp-area="" asp-controller="Sports" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Go to @item.Name, see the possibilities in your city </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>

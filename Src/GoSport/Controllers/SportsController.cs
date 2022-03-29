@@ -1,4 +1,5 @@
-﻿using GoSport.Core.Services.Interfaces;
+﻿using GoSport.Core.Constants;
+using GoSport.Core.Services.Interfaces;
 using GoSport.Core.ViewModel.Sport;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -44,9 +45,50 @@ namespace GoSport.Controllers
 
             this.sportsService.Add(model);
 
-            return this.RedirectToAction("All", "Sports", new { area = ""});
+            return this.RedirectToAction("All", "Sports", new { area = "" });
         }
 
+        public IActionResult AllSports()
+        {
+            var sports = this.sportsService.GetAllSports();
+            return this.View(sports);
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Edit(int id)
+        {
+            var sport = this.sportsService.GetSportById(id);
+
+            if (sport == null)
+            {
+                this.TempData["Message"] = ConstCore.SportDoesNotExist;
+                return this.RedirectToAction("Invalid", "Home", new { area = "" });
+            }
+
+            return this.View(sport);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Edit(SportViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            var sport = this.sportsService.UpdateSport(model);
+
+            if (sport == null)
+            {
+                this.ViewData["Error"] = ConstCore.SportWasNotUpdated;
+                return this.View(model);
+            }
+
+            this.ViewData["Message"] = ConstCore.SportWasUpdated;
+            return this.View();
+        }
 
     }
 }

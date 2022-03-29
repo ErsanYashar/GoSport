@@ -7,5 +7,7 @@ namespace GoSport.Core.Services.Interfaces
     {
         IEnumerable<SportViewModel> GetAllSports();
         Sport Add(SportViewModel model);
+        SportViewModel GetSportById(int id);
+        SportViewModel UpdateSport(SportViewModel model);
     }
 }

@@ -19,7 +19,7 @@
         public const int OrganizerDescriptionMaxLength = 100;
 
         public const int SportNameMaxLength = 50;
-        public const int SportDescriptionMaxLength = 100;
+        public const int SportDescriptionMaxLength = 800;
 
         public const int TownNameMaxLength = 50;
 
