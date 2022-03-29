@@ -18,6 +18,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddTransient<ITown, TownService>();
 builder.Services.AddTransient<IUsersService, UsersService>();
+builder.Services.AddTransient<ISportsService, SportsService>();
 
 
 builder.Services.AddDefaultIdentity<User>(options =>

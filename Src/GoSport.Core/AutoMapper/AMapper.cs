@@ -2,6 +2,7 @@
 using GoSport.Infrastructure.Data.DateModels;
 using AutoMapper;
 using GoSport.Core.ViewModel.Town;
+using GoSport.Core.ViewModel.Sport;
 
 namespace GoSport.Core.AutoMapper
 {
@@ -26,6 +27,11 @@ namespace GoSport.Core.AutoMapper
             //town
 
             this.CreateMap<Town, TownViewModel>().ReverseMap();
+
+
+            // Sport
+
+            this.CreateMap<Sport, SportViewModel>().ReverseMap();
         }
     }
 }

@@ -48,6 +48,10 @@ namespace GoSport.Core.Constants
         public const string zipErrorMessage = "Тhe code must be between 0 and 10000";
 
 
+        public const int MinSportNameLength = 2;
+        public const string MinSportErrorMessage = "The Name must be at least 2 characters long!";
+
+
 
     }
 }
