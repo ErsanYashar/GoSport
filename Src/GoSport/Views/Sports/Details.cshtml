@@ -1,0 +1,53 @@
+﻿@using GoSport.Core.ViewModel.Discipline
+@using GoSport.Core.ViewModel.Sport
+@model SportViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@Model.Name</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <img class="card-img-top" src="@Model.ImageSportUrl" alt="@Model.Name">
+    </div>
+    <div class="col-md-8">
+        <h4>Description</h4>
+        <p>@Model.Description</p>
+    </div>
+</div>
+
+
+
+<h4>Disciplines</h4>
+@if (this.ViewData["Disciplines"] != null)
+{
+     foreach (var discipline in this.ViewData["Disciplines"] as IEnumerable<DisciplineViewModel>)
+     {
+         <hr/>
+         <div class="row">
+             <div class="col-md-5">
+                 @discipline.Name
+             </div>
+             <div class="col-md-7">
+                 @discipline.Description
+             </div>
+         </div>
+     }
+}
+
+
+@if (this.User.IsInRole("Admin"))
+{
+    <div class="text-center">
+        <a asp-area="" asp-controller="Sports" asp-action="All">Back to all</a>
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <a asp-area="" asp-controller="Sports" asp-action="AllSports">Back to sports</a>
+    </div>
+}
+

@@ -108,5 +108,7 @@ namespace GoSport.Controllers
 
             return this.RedirectToAction("All", "Towns", new { area = ""});
         }
+
+
     }
 }

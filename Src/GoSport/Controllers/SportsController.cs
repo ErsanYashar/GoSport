@@ -10,10 +10,12 @@ namespace GoSport.Controllers
     public class SportsController : Controller
     {
         private readonly ISportsService sportsService;
+        private readonly IDisciplinesService disciplinesService;
 
-        public SportsController(ISportsService sportsService)
+        public SportsController(ISportsService sportsService, IDisciplinesService disciplinesService)
         {
             this.sportsService = sportsService;
+            this.disciplinesService = disciplinesService;
         }
 
 
@@ -89,6 +91,22 @@ namespace GoSport.Controllers
             this.ViewData["Message"] = ConstCore.SportWasUpdated;
             return this.View();
         }
+
+        public IActionResult Details(int id)
+        {
+            var sport = this.sportsService.GetSportById(id);
+
+            if (sport == null)
+            {
+                this.TempData["Message"] = ConstCore.SportNotExist;
+                return this.RedirectToAction("Invalid", "Home", new { area = "" });
+            }
+
+            this.ViewData["Disciplines"] = this.disciplinesService.GetDisciplinesBySportId(id);
+
+            return this.View(sport);
+        }
+
 
     }
 }
