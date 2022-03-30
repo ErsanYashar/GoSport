@@ -5,9 +5,10 @@
 <h1 class="text-center text-primary">GoSport</h1>
 <h2 class="text-center text-primary">Welcome Admin - @this.User.Identity.Name</h2>
 
-<div class="row text-center">
-    <div class="col-md-2">
-        <div class="card text-center" style="width: 10rem;">
+
+<div class="row d-flex justify-content-center">
+    <div class="col-md-3">
+        <div class="card text-center" style="width: 15rem;">
             <div class="text-center">
                 <i class="fas fa-users fa-5x"></i>
             </div>
@@ -17,8 +18,8 @@
          </div>
        </div>
     </div>
-    <div class="col-md-2">
-        <div class="card text-center" style="width: 10rem;">
+    <div class="col-md-3">
+        <div class="card text-center" style="width: 15rem;">
             <div class="text-center">
                 <i class="fas fa-running fa-5x"></i>
             </div>
@@ -28,8 +29,8 @@
             </div>
         </div>
     </div>
-     <div class="col-md-2">
-        <div class="card text-center" style="width: 10rem;">
+     <div class="col-md-3">
+        <div class="card text-center" style="width: 15rem;">
             <div class="text-center">
                 <i class="fas fa-city fa-5x"></i>
             </div>
@@ -39,4 +40,14 @@
             </div>
         </div>
     </div>
+     <div class="col-md-3">
+        <div class="card text-center" style="width: 15rem;">
+            <div class="text-center">
+                <i class="fas fa-dumbbell fa-5x"></i>
+            </div>
+            <div class="card-body">
+                <h2 class="card-title text-center">Disciplines</h2>
+                <a asp-area="" asp-controller="Disciplines" asp-action="All" class="btn btn-primary">All Disciplines</a>
+            </div>
+        </div>
 </div>

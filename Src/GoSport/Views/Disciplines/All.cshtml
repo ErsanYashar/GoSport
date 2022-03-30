@@ -1,0 +1,46 @@
+﻿@using GoSport.Core.ViewModel.Discipline
+@model IEnumerable<DisciplineViewModel>
+
+@{
+    ViewData["Title"] = "All Disciplines";
+}
+
+<h1 class="text-center text-primary">Disciplines</h1>
+
+<p class="text-center">
+    <a asp-area="" asp-controller="Disciplines" asp-action="Add" class="btn btn-primary btn-lg">Add Discipline</a>
+</p>
+
+<table class="table mx-auto table-hover">
+    <thead>
+        <tr class="row table-primary">
+            <th class="col-md-4 text-center">
+                Discipline
+            </th>
+            <th class="col-md-4 text-center">
+                Sport
+            </th>
+            <th class="col-md-4 text-center">
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var discipline in Model)
+        {
+            <tr class="row table-striped">
+                <td class="col-md-4 text-center">
+                    @discipline.Name
+                </td>
+                <td class="col-md-4 text-center">
+                    @discipline.Sport
+                </td>
+                <td class="col-md-4 text-center">
+                    <a asp-area="" asp-controller="Disciplines" asp-action="Edit" asp-route-id="@discipline.Id" class="btn btn-primary">Edit</a>
+                    <a asp-area="" asp-controller="Disciplines" asp-action="Details" asp-route-id="@discipline.Id" class="btn btn-success">Details</a>
+                    <a asp-area="" asp-controller="Disciplines" asp-action="Delete" asp-route-id="@discipline.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

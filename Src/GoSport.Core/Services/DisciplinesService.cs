@@ -14,6 +14,18 @@ namespace GoSport.Core.Services
         {
         }
 
+        public IEnumerable<DisciplineViewModel> GetAllDisciplines()
+        {
+            var disciplines = this.Context
+                .Disciplines
+                .OrderBy(s => s.Name)
+                .ToList();
+
+            var disciplinesViewModel = this.Mapper.Map<IList<Discipline>, IEnumerable<DisciplineViewModel>>(disciplines);
+
+            return disciplinesViewModel;
+        }
+
         public IEnumerable<DisciplineViewModel> GetDisciplinesBySportId(int id)
         {
             var disciplines = this.Context
