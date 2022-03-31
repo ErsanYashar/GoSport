@@ -57,5 +57,18 @@ namespace GoSport.Core.Constants
         public const int minDisciplineDescriptionLength = 20;
         public const string MinDisciplineDescriptionLengthErrorMessage = "The Name must be at least 20 characters long!";
 
+
+        public const int minDisciplineDiscriptionLength = 20;
+        public const string minDisciplineDiscriptionLengthErrMess = "The Description must be at least 20 characters long!";
+
+        public const int minNameDiscriptionLength = 2;
+        public const string minNameDiscriptionLengthErrorMessage = "The Name must be at least 2 characters long!";
+
+        public const string DisciplineDoesNotExist = "Discipline Does Not Exist";
+
+        public const string DisciplineWasNotUpdated = "Discipline Was Not Updated";
+
+        public const string DisciplineWasUpdated = "Discipline Was Updated";
+
     }
 }

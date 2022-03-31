@@ -14,14 +14,14 @@ namespace GoSport.Core.Services
         {
         }
 
-        public IEnumerable<SportViewModel> GetAllSports()
+        public IList<SportViewModel> GetAllSports()
         {
             var sports = this.Context
             .Sports
             .OrderBy(s => s.Name)
             .ToList();
 
-            var sportModel = this.Mapper.Map<IList<Sport>, IEnumerable<SportViewModel>>(sports);
+            var sportModel = this.Mapper.Map<IList<Sport>, IList<SportViewModel>>(sports);
 
             return sportModel;
 

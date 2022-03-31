@@ -1,0 +1,77 @@
+﻿@using GoSport.Core.ViewModel.Discipline
+@using GoSport.Core.ViewModel.Sport
+@model DisciplineViewModel
+
+@{
+    ViewData["Title"] = "Edit Discipline";
+}
+
+<h1 class="text-center text-primary">Edit</h1>
+
+@if (this.ViewData.ContainsKey("Error"))
+{
+    <div class="col-md-6 offset-3 alert alert-dismissible alert-danger text-center">
+        <strong>@this.ViewData["Error"]</strong>
+    </div>
+}
+@if (this.ViewData.ContainsKey("Message"))
+{
+    <div class="col-md-6 offset-3 alert alert-dismissible alert-success text-center">
+        <strong>@this.ViewData["Message"]</strong>
+    </div>
+}
+
+
+<div class="row text-center">
+    <div class="col-md-4 offset-md-4 text-center">
+        <form asp-area="" asp-controller="Disciplines" asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-dumbbell"></i></span>
+                    </div>
+                    <input asp-for="Name" class="form-control" placeholder="Discipline Name" />
+                </div>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-ad"></i></span>
+                    </div>
+                    <textarea asp-for="Description" class="form-control" rows="10"></textarea>
+                </div>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SportId" class="control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-running"></i></span>
+                    </div>
+                    <select asp-for="SportId" class="form-control">
+                        <option selected>Select Sport</option>
+                        @foreach (var name in this.ViewData["Sports"] as IEnumerable<SportViewModel>)
+                        {
+                            <option value="@name.Id">@name.Name</option>
+                        }
+                    </select>
+                </div>
+                <span asp-validation-for="SportId" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Update Discipline" class="btn btn-primary " />
+            </div>
+        </form>
+    </div>
+</div>
+
+<br />
+
+<div class="text-center">
+    <a asp-area="" asp-controller="Disciplines" asp-action="All">Back to all</a>
+</div>

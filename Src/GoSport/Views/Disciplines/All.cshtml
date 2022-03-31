@@ -1,4 +1,7 @@
 ﻿@using GoSport.Core.ViewModel.Discipline
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
 @model IEnumerable<DisciplineViewModel>
 
 @{
@@ -11,7 +14,7 @@
     <a asp-area="" asp-controller="Disciplines" asp-action="Add" class="btn btn-primary btn-lg">Add Discipline</a>
 </p>
 
-<table class="table mx-auto table-hover">
+<table class="table mx-auto table-hover table-bordered table-striped">
     <thead>
         <tr class="row table-primary">
             <th class="col-md-4 text-center">
@@ -28,12 +31,12 @@
     <tbody>
         @foreach (var discipline in Model)
         {
-            <tr class="row table-striped">
+            <tr class="row table-striped ">
                 <td class="col-md-4 text-center">
                     @discipline.Name
                 </td>
                 <td class="col-md-4 text-center">
-                    @discipline.Sport
+                    @discipline.SportName
                 </td>
                 <td class="col-md-4 text-center">
                     <a asp-area="" asp-controller="Disciplines" asp-action="Edit" asp-route-id="@discipline.Id" class="btn btn-primary">Edit</a>
@@ -44,3 +47,17 @@
         }
     </tbody>
 </table>
+
+<div class="text-center">
+    @Html.PagedListPager((IPagedList)@Model, page => Url.Action("All", new { page = page }),
+        new PagedListRenderOptions
+        {
+            DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+            DisplayLinkToLastPage = PagedListDisplayMode.Always,
+            DisplayLinkToNextPage = PagedListDisplayMode.Never,
+            DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+            UlElementClasses = new string[] { "pagination", "justify-content-center" },
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" },
+        })
+</div>

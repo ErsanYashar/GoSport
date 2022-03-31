@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GoSport.Core.ViewModel.Discipline
 {
-    public class DisciplineViewModel
+    public class DisciplineViewModel 
     {
         public int Id { get; set; }
 
@@ -19,7 +19,7 @@ namespace GoSport.Core.ViewModel.Discipline
         [Required]
         [Display(Name = "Sport")]
         public int SportId { get; set; }
+        public string SportName { get; set; }
 
-        public string Sport { get; set; }
     }
 }
