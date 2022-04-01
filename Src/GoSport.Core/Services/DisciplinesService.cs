@@ -47,13 +47,27 @@ namespace GoSport.Core.Services
 
         public DisciplineViewModel GetDisciplineById(int id)
         {
-            var discipline = this.Context
-               .Disciplines
-               .FirstOrDefault(d => d.Id == id);
+            //var discipline = this.Context
+            //   .Disciplines
+            //   .FirstOrDefault(d => d.Id == id);
 
-            var disciplineViewModel = this.Mapper.Map<DisciplineViewModel>(discipline);
+            var disciplines = this.Context
+             .Disciplines
+             .Select(x => new DisciplineViewModel
+             {
+                 Id = x.Id,
+                 Name = x.Name,
+                 Description = x.Description,
+                 SportId = x.SportId,
+                 SportName = x.Sport.Name
 
-            return disciplineViewModel;
+             })
+             .FirstOrDefault(d => d.Id == id);
+
+
+         //   var disciplineViewModel = this.Mapper.Map<DisciplineViewModel>(discipline);
+
+            return disciplines;
         }
 
         public IEnumerable<DisciplineViewModel> GetDisciplinesBySportId(int id)

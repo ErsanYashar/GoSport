@@ -84,5 +84,18 @@ namespace GoSport.Controllers
 
             return this.View();
         }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Details(int id)
+        {
+            var discipline = this.disciplinesService.GetDisciplineById(id);
+            if (discipline == null)
+            {
+                this.TempData["Message"] = ConstCore.DisciplineDoesNotExist;
+                return this.RedirectToAction("Invalid", "Home", new { area = ""});
+            }
+
+            return this.View(discipline);
+        }
     }
 }

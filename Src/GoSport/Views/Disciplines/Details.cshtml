@@ -1,0 +1,28 @@
+﻿@using GoSport.Core.ViewModel.Discipline
+@model DisciplineViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="text-center text-primary">@Model.Name</h1>
+
+<div>
+    <h4>Sport</h4>
+    <p>@Model.SportName</p>
+</div>
+
+
+<div>
+    <h4>Description</h4>
+    <p>@Model.Description</p>
+</div>
+
+<br/>
+
+<div class="text-center">
+    <a asp-area="" asp-controller="Disciplines" asp-action="All">Back to all</a>
+</div>
+
+
+
