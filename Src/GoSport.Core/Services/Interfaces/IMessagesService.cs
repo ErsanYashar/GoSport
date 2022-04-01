@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GoSport.Core.ViewModel.Message;
+using GoSport.Infrastructure.Data.DateModels;
 
 namespace GoSport.Core.Services.Interfaces
 {
-    internal class IMessagesService
+    public interface IMessagesService
     {
+        Message Send(MessageViewModel model, User user);
     }
 }

@@ -4,6 +4,7 @@ using AutoMapper;
 using GoSport.Core.ViewModel.Town;
 using GoSport.Core.ViewModel.Sport;
 using GoSport.Core.ViewModel.Discipline;
+using GoSport.Core.ViewModel.Message;
 
 namespace GoSport.Core.AutoMapper
 {
@@ -41,7 +42,11 @@ namespace GoSport.Core.AutoMapper
 
             this.CreateMap<Discipline, AddDisciplineViewModel>().ReverseMap();
 
-             
+            //message
+
+            this.CreateMap<Message, MessageViewModel>().ReverseMap();
+
+
         }
     }
 }

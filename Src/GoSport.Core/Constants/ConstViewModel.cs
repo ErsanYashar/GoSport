@@ -70,5 +70,15 @@ namespace GoSport.Core.Constants
 
         public const string DisciplineWasUpdated = "Discipline Was Updated";
 
+        public const int minMessagesFullNameLength = 3;
+        public const string mindMessagesFullNameErrorMessage = "The full name must be at least 3 characters long.";
+
+        public const int minSubjectLength = 3;
+        public const string minSubjectLengthErrorMessage = "The subject name must be at least 3 characters long.";
+
+        public const int minContentLength = 3;
+        public const string minContentLengthErrorMessage = "The content name must be at least 3 characters long.";
+
+
     }
 }
