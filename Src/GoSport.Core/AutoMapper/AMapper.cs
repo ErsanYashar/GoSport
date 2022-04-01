@@ -46,6 +46,11 @@ namespace GoSport.Core.AutoMapper
 
             this.CreateMap<Message, MessageViewModel>().ReverseMap();
 
+            //this.CreateMap<Message, AllMessageViewModel>()
+            //   .ForMember(m => m.Username, m => m.MapFrom(x => x.User.UserName))
+            //   .ForMember(m => m.PublishedOn, m => m.MapFrom(x => x.PublishedOn.ToString("dd-MM-yyyy HH:mm:ss")))
+            //   .ReverseMap();
+
 
         }
     }

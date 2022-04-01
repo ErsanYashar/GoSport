@@ -1,0 +1,75 @@
+﻿@using GoSport.Core.ViewModel.Message
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+@model IEnumerable<AllMessageViewModel>
+
+@{
+    ViewData["Title"] = "All Messages";
+}
+
+<h1 class="text-center text-primary">Messages</h1>
+
+<table class="table mx-auto table-hover">
+    <thead>
+        <tr class="row table-primary">
+            <th class="col-md-2 text-center">
+                Username
+            </th>
+            <th class="col-md-2 text-center">
+                Full Name
+            </th>
+            <th class="col-md-2 text-center">
+                Email
+            </th>
+            <th class="col-md-2 text-center">
+                Subject
+            </th>
+            <th class="col-md-2 text-center">
+                Content
+            </th>
+            <th class="col-md-2 text-center">
+                Published On
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var message in Model)
+        {
+            <tr class="row table-striped">
+                <td class="col-md-2 text-center">
+                    @message.Username
+                </td>
+                <td class="col-md-2 text-center">
+                    @message.FullName
+                </td>
+                <td class="col-md-2 text-center">
+                    @message.Email
+                </td>
+                <td class="col-md-2 text-center">
+                    @message.Subject
+                </td>
+                <td class="col-md-2 text-center">
+                    @message.Content
+                </td>
+                <td class="col-md-2 text-center">
+                    @message.PublishedOn
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-center">
+    @Html.PagedListPager((IPagedList)@Model, page => Url.Action("All", new { page = page }),
+        new PagedListRenderOptions
+        {
+            DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+            DisplayLinkToLastPage = PagedListDisplayMode.Always,
+            DisplayLinkToNextPage = PagedListDisplayMode.Never,
+            DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+            UlElementClasses = new string[] { "pagination", "justify-content-center" },
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" },
+        })
+</div>

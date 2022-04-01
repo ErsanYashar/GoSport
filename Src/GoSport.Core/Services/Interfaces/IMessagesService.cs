@@ -6,5 +6,7 @@ namespace GoSport.Core.Services.Interfaces
     public interface IMessagesService
     {
         Message Send(MessageViewModel model, User user);
+
+        IEnumerable<AllMessageViewModel> GetAllMessages();
     }
 }

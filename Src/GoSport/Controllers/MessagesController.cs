@@ -1,8 +1,10 @@
 ﻿using GoSport.Core.Services.Interfaces;
 using GoSport.Core.ViewModel.Message;
 using GoSport.Infrastructure.Data.DateModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace GoSport.Controllers
 {
@@ -47,6 +49,19 @@ namespace GoSport.Controllers
             this.messagesService.Send(model, user);
 
             return this.View("ThankyouMessage", "Messages");
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult All(int? page)
+        {
+            var messages = this.messagesService.GetAllMessages();
+
+            var pageNumber = page ?? 1;
+
+
+            var messagesPage = messages.ToPagedList(pageNumber, 10);
+
+            return this.View(messagesPage);
         }
 
     }
