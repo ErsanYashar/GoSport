@@ -97,5 +97,26 @@ namespace GoSport.Controllers
 
             return this.View(discipline);
         }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delete(int id)
+        {
+            var discipline = this.disciplinesService.GetDisciplineById(id);
+            if (discipline == null)
+            {
+                this.TempData["Message"] = ConstCore.DisciplineDoesNotExist;
+                return this.RedirectToAction("Invalid", "Home", new { area = ""});
+            }
+
+            return this.View(discipline);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delete(DisciplineViewModel model)
+        {
+            this.disciplinesService.DeleteDiscipline(model);
+            return this.RedirectToAction("All", "Disciplines", new { area = "" });
+        }
     }
 }

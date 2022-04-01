@@ -24,6 +24,19 @@ namespace GoSport.Core.Services
             return discipline;
         }
 
+        public void DeleteDiscipline(DisciplineViewModel model)
+        {
+            var discipline = this.Context
+               .Disciplines
+               .FirstOrDefault(d => d.Id == model.Id);
+
+            if (discipline != null)
+            {
+                this.Context.Disciplines.Remove(discipline);
+                this.Context.SaveChanges();
+            }
+        }
+
         public IEnumerable<DisciplineViewModel> GetAllDisciplines()
         {
             var disciplines = this.Context
@@ -47,9 +60,6 @@ namespace GoSport.Core.Services
 
         public DisciplineViewModel GetDisciplineById(int id)
         {
-            //var discipline = this.Context
-            //   .Disciplines
-            //   .FirstOrDefault(d => d.Id == id);
 
             var disciplines = this.Context
              .Disciplines
@@ -63,9 +73,6 @@ namespace GoSport.Core.Services
 
              })
              .FirstOrDefault(d => d.Id == id);
-
-
-         //   var disciplineViewModel = this.Mapper.Map<DisciplineViewModel>(discipline);
 
             return disciplines;
         }

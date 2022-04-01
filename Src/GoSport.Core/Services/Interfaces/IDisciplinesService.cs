@@ -14,5 +14,7 @@ namespace GoSport.Core.Services.Interfaces
         DisciplineViewModel GetDisciplineById(int id);
 
         DisciplineViewModel UpdateDiscipline(DisciplineViewModel model);
+
+        void DeleteDiscipline(DisciplineViewModel model);
     }
 }
