@@ -79,6 +79,12 @@ namespace GoSport.Core.Constants
         public const int minContentLength = 3;
         public const string minContentLengthErrorMessage = "The content name must be at least 3 characters long.";
 
+        public const int minOrganizerNameLength= 3;
+        public const string minOrganizerNameLengthErrorMessage = "The organizer name must be at least 3 characters long.";
+
+        public const int minDescriptionLength = 10;
+        public const string minDescriptionLengthErrorMessage = "The description must be at least 10 characters long.";
+
 
     }
 }

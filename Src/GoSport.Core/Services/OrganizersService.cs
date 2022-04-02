@@ -1,4 +1,10 @@
-﻿using System;
+﻿using AutoMapper;
+using GoSport.Core.Services.Interfaces;
+using GoSport.Core.ViewModel.Organizer;
+using GoSport.Infrastructure.Data;
+using GoSport.Infrastructure.Data.DateModels;
+using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +12,39 @@ using System.Threading.Tasks;
 
 namespace GoSport.Core.Services
 {
-    internal class OrganizersService
+    public class OrganizersService : BaseService, IOrganizersService
     {
+        public OrganizersService(IMapper mapper, UserManager<User> userManager, ApplicationDbContext context) 
+            : base(mapper, userManager, context)
+        {
+        }
+
+        public IEnumerable<OrganizerViewModel> AllOrganizers()
+        {
+            var organizer = this.Context
+               .Organizers
+               .Select(x => new OrganizerViewModel
+               { 
+                   Name = x.Name,
+                   Description = x.Description
+               })
+               .OrderBy(x => x.Name)
+               .ToList();
+
+            return organizer;
+        }
+
+        public Organizer Add(AddOrganizerViewModel model, string username)
+        {
+            var user = this.UserManager.FindByNameAsync(username).GetAwaiter().GetResult();
+
+            var organizer = this.Mapper.Map<Organizer>(model);
+            organizer.President = user;
+
+            this.Context.Organizers.Add(organizer);
+            this.Context.SaveChanges();
+
+            return organizer;
+        }
     }
 }

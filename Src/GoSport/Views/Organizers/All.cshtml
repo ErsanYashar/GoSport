@@ -1,0 +1,46 @@
+﻿@using GoSport.Core.ViewModel.Organizer
+@model IEnumerable<OrganizerViewModel>
+
+@{
+    ViewData["Title"] = "All Organizer";
+}
+
+<h1 class="text-center text-primary">Organizer</h1>
+
+<p class="text-center">
+    <a asp-area="" asp-controller="Organizers" asp-action="Add" class="btn btn-primary btn-lg">Add Organizer</a>
+</p>
+
+<table class="table mx-auto table-hover table-bordered table-striped">
+    <thead>
+        <tr class="row table-primary">           
+            <th class="col-md-4 text-center">
+                 UserName
+            </th>
+            <th class="col-md-4 text-center">
+                 Description
+            </th>
+            <th class="col-md-4 text-center">
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="row table-striped">
+                
+                <td class="col-md-4 text-center">
+                    @item.Name
+                </td>
+                <td class="col-md-4 text-center">
+                    @item.Description
+                </td>
+                <td class="col-md-4 text-center">
+                     <a asp-area="" asp-controller="Organizers" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                    <a asp-area="" asp-controller="Organizers" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

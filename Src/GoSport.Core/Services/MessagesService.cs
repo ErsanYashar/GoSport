@@ -26,7 +26,7 @@ namespace GoSport.Core.Services
                     Email = x.Email,
                     Subject = x.Subject,
                     Content = x.Content,
-                    PublishedOn = x.PublishedOn
+                    PublishedOn =x.PublishedOn
                 })
                 .ToList();
 

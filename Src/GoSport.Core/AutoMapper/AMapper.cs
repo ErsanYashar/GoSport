@@ -5,6 +5,7 @@ using GoSport.Core.ViewModel.Town;
 using GoSport.Core.ViewModel.Sport;
 using GoSport.Core.ViewModel.Discipline;
 using GoSport.Core.ViewModel.Message;
+using GoSport.Core.ViewModel.Organizer;
 
 namespace GoSport.Core.AutoMapper
 {
@@ -50,6 +51,10 @@ namespace GoSport.Core.AutoMapper
             //   .ForMember(m => m.Username, m => m.MapFrom(x => x.User.UserName))
             //   .ForMember(m => m.PublishedOn, m => m.MapFrom(x => x.PublishedOn.ToString("dd-MM-yyyy HH:mm:ss")))
             //   .ReverseMap();
+
+            // Organizer
+
+            this.CreateMap<Organizer, AddOrganizerViewModel>().ReverseMap();
 
 
         }
