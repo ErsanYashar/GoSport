@@ -55,6 +55,8 @@ namespace GoSport.Core.AutoMapper
             // Organizer
 
             this.CreateMap<Organizer, AddOrganizerViewModel>().ReverseMap();
+            this.CreateMap<Organizer, OrganizerViewModel>().ReverseMap();
+
 
 
         }

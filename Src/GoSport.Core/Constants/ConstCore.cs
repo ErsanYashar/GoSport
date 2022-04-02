@@ -17,5 +17,6 @@
         public const string SportWasUpdated = "Sport Was Updated";
         public const string SportNotExist = "Sport Does Not Exist";
         public const string DisciplineDoesNotExist = "Discipline Does Not Exist";
+        public const string organizerDoesNotExist = "organizer Does Not Exist";
     }
 }

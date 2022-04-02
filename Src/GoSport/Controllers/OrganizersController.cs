@@ -1,4 +1,5 @@
-﻿using GoSport.Core.Services.Interfaces;
+﻿using GoSport.Core.Constants;
+using GoSport.Core.Services.Interfaces;
 using GoSport.Core.ViewModel.Organizer;
 using GoSport.Infrastructure.Data.DateModels;
 using Microsoft.AspNetCore.Authorization;
@@ -50,6 +51,27 @@ namespace GoSport.Controllers
 
             this.organizersService.Add(model, this.User.Identity.Name);
             return this.RedirectToAction("Index", "Home", new { area = ""});
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delete(int id)
+        {
+            var organization = this.organizersService.organizerById(id);
+            if (organization == null)
+            {
+                this.TempData["Message"] = ConstCore.organizerDoesNotExist;
+                return this.RedirectToAction("Invalid", "Home", new { area = "" });
+            }
+            return this.View(organization);
+        }
+
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delete(OrganizerViewModel model)
+        {
+            this.organizersService.DeleteOrganization(model);
+            return this.RedirectToAction("All", "Organizers", new { area = "" });
         }
     }
 }

@@ -13,5 +13,9 @@ namespace GoSport.Core.Services.Interfaces
         IEnumerable<OrganizerViewModel> AllOrganizers();
 
         Organizer Add(AddOrganizerViewModel model, string username);
+
+        OrganizerViewModel organizerById(int id);
+
+        void DeleteOrganization(OrganizerViewModel model);
     }
 }

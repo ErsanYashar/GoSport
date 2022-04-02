@@ -1,0 +1,45 @@
+﻿@using GoSport.Core.ViewModel.Organizer
+@model OrganizerViewModel
+
+@{
+    ViewData["Title"] = "Delete Organizer";
+}
+
+
+<h1 class="text-center text-primary">Delete</h1>
+
+<h2 class="text-danger text-center">Are you sure you want to delete @Model.Name?</h2>
+
+<div class="row text-center">
+    <div class="col-md-4 offset-md-4 text-center">
+        <form asp-area="" asp-controller="Organizers" asp-action="Delete" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input asp-for="Name" class="form-control" readonly style="background-color: striped" />
+                </div>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-ad"></i></span>
+                    </div>
+                    <textarea asp-for="Description" class="form-control" rows="10" readonly style="background-color: striped"></textarea>
+                </div>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <br/>
+            <input type="submit" value="Delete Organizer" class="btn btn-danger" />
+        </form>
+    </div>
+</div>
+
+<div class="text-center">
+    <a asp-area="" asp-controller="Organizers" asp-action="All">Back to all</a>
+</div>

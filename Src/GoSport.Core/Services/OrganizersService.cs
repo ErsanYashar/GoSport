@@ -25,6 +25,7 @@ namespace GoSport.Core.Services
                .Organizers
                .Select(x => new OrganizerViewModel
                { 
+                   Id = x.Id,
                    Name = x.Name,
                    Description = x.Description
                })
@@ -45,6 +46,30 @@ namespace GoSport.Core.Services
             this.Context.SaveChanges();
 
             return organizer;
+        }
+
+        public OrganizerViewModel organizerById(int id)
+        {
+            var organizer = this.Context
+               .Organizers
+               .FirstOrDefault(x => x.Id == id);
+
+            var organizerViewModel = this.Mapper.Map<OrganizerViewModel>(organizer);
+
+            return organizerViewModel;
+        }
+
+        public void DeleteOrganization(OrganizerViewModel model)
+        {
+            var organizer = this.Context
+                .Organizers
+                .FirstOrDefault(d => d.Id == model.Id);
+
+            if (organizer != null)
+            {
+                this.Context.Organizers.Remove(organizer);
+                this.Context.SaveChanges();
+            }
         }
     }
 }
