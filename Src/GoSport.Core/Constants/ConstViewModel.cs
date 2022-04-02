@@ -85,6 +85,11 @@ namespace GoSport.Core.Constants
         public const int minDescriptionLength = 10;
         public const string minDescriptionLengthErrorMessage = "The description must be at least 10 characters long.";
 
+        public const int minVenueNameLength = 3;
+        public const string minVenueNameLengthhErrorMessage = "The venue name must be at least 3 characters long.";
 
+        public const int MinVenueCapacity = 2;
+        public const int MaxVenueCapacity = 50;
+        public const string CapacityErrorMessage = "Тhe capacity should be between 2 and 50";
     }
 }

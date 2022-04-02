@@ -4,11 +4,6 @@ using GoSport.Core.ViewModel.Organizer;
 using GoSport.Infrastructure.Data;
 using GoSport.Infrastructure.Data.DateModels;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GoSport.Core.Services
 {

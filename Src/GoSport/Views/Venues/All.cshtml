@@ -1,0 +1,52 @@
+﻿@using GoSport.Core.ViewModel.Venue
+@model IEnumerable<VenueViewModel>
+
+@{
+    ViewData["Title"] = "All Venues";
+}
+
+<h1 class="text-center text-primary">Venues</h1>
+
+<p class="text-center">
+    <a asp-area="" asp-controller="Venues" asp-action="Add" class="btn btn-primary btn-lg">Add Venue</a>
+</p>
+
+<table class="table mx-auto table-hover table-bordered table-striped">
+    <thead>
+    <tr class="row table-primary">
+        <th class="col-md-2 text-center">
+            Venue Name
+        </th>
+        <th class="col-md-3 text-center">
+            Address
+        </th>
+        <th class="col-md-2 text-center">
+            Town
+        </th>
+        <th class="col-md-3 text-center">
+            Action
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var venue in Model)
+    {
+        <tr class="row table-dark">
+            <td class="col-md-2 text-center">
+                @venue.Name
+            </td>
+            <td class="col-md-3 text-center">
+                @venue.Address
+            </td>
+            <td class="col-md-2 text-center">
+                @venue.Town
+            </td>
+            <td class="col-md-3 text-center">
+                <a asp-area="" asp-controller="Venues" asp-action="Edit" asp-route-id="@venue.Id" class="btn btn-primary">Edit</a>
+                <a asp-area="" asp-controller="Venues" asp-action="Details" asp-route-id="@venue.Id" class="btn btn-success">Details</a>
+                <a asp-area="" asp-controller="Venues" asp-action="Delete" asp-route-id="@venue.Id" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

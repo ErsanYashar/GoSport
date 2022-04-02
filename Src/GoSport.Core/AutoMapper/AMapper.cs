@@ -6,6 +6,7 @@ using GoSport.Core.ViewModel.Sport;
 using GoSport.Core.ViewModel.Discipline;
 using GoSport.Core.ViewModel.Message;
 using GoSport.Core.ViewModel.Organizer;
+using GoSport.Core.ViewModel.Venue;
 
 namespace GoSport.Core.AutoMapper
 {
@@ -56,6 +57,9 @@ namespace GoSport.Core.AutoMapper
 
             this.CreateMap<Organizer, AddOrganizerViewModel>().ReverseMap();
             this.CreateMap<Organizer, OrganizerViewModel>().ReverseMap();
+
+            // Venues
+            this.CreateMap<Venue, VenueViewModel>().ReverseMap();
 
 
 

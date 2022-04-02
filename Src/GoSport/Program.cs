@@ -22,6 +22,7 @@ builder.Services.AddTransient<ISportsService, SportsService>();
 builder.Services.AddTransient<IDisciplinesService, DisciplinesService>();
 builder.Services.AddTransient<IMessagesService, MessagesService>();
 builder.Services.AddTransient<IOrganizersService, OrganizersService>();
+builder.Services.AddTransient<IVenuesService, VenuesService>();
 
 
 
