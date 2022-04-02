@@ -21,6 +21,8 @@ builder.Services.AddTransient<IUsersService, UsersService>();
 builder.Services.AddTransient<ISportsService, SportsService>();
 builder.Services.AddTransient<IDisciplinesService, DisciplinesService>();
 builder.Services.AddTransient<IMessagesService, MessagesService>();
+builder.Services.AddTransient<IOrganizersService, OrganizersService>();
+
 
 
 builder.Services.AddDefaultIdentity<User>(options =>
