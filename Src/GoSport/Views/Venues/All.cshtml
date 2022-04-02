@@ -1,4 +1,7 @@
 ﻿@using GoSport.Core.ViewModel.Venue
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
 @model IEnumerable<VenueViewModel>
 
 @{
@@ -14,13 +17,13 @@
 <table class="table mx-auto table-hover table-bordered table-striped">
     <thead>
     <tr class="row table-primary">
-        <th class="col-md-2 text-center">
+        <th class="col-md-3 text-center">
             Venue Name
         </th>
         <th class="col-md-3 text-center">
             Address
         </th>
-        <th class="col-md-2 text-center">
+        <th class="col-md-3 text-center">
             Town
         </th>
         <th class="col-md-3 text-center">
@@ -31,14 +34,14 @@
     <tbody>
     @foreach (var venue in Model)
     {
-        <tr class="row table-dark">
-            <td class="col-md-2 text-center">
+        <tr class="row table-striped">
+            <td class="col-md-3 text-center">
                 @venue.Name
             </td>
             <td class="col-md-3 text-center">
                 @venue.Address
             </td>
-            <td class="col-md-2 text-center">
+            <td class="col-md-3 text-center">
                 @venue.Town
             </td>
             <td class="col-md-3 text-center">
@@ -50,3 +53,17 @@
     }
     </tbody>
 </table>
+
+<div class="text-center">
+    @Html.PagedListPager((IPagedList)@Model, page => Url.Action("All", new { page = page }),
+        new PagedListRenderOptions
+        {
+            DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+            DisplayLinkToLastPage = PagedListDisplayMode.Always,
+            DisplayLinkToNextPage = PagedListDisplayMode.Never,
+            DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+            UlElementClasses = new string[] { "pagination", "justify-content-center" },
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" },
+        })
+</div>
