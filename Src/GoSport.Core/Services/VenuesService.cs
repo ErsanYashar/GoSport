@@ -24,6 +24,19 @@ namespace GoSport.Core.Services
             return venue;
         }
 
+        public void DeleteVenue(VenueViewModel model)
+        {
+            var venue = this.Context
+               .Venues
+               .FirstOrDefault(d => d.Id == model.Id);
+
+            if (venue != null)
+            {
+                this.Context.Venues.Remove(venue);
+                this.Context.SaveChanges();
+            }
+        }
+
         public IEnumerable<VenueViewModel> GetAllVenues()
         {
             var venues = this.Context
@@ -74,6 +87,7 @@ namespace GoSport.Core.Services
                {
                    Id = x.Id,
                    Name = x.Name,
+                   Capacity= x.Capacity,
                    ImageVenueUrl = x.ImageVenueUrl,
                    Town = x.Town.Name,
                    Address = x.Address,

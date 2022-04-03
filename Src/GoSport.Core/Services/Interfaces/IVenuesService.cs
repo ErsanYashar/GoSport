@@ -17,5 +17,7 @@ namespace GoSport.Core.Services.Interfaces
         VenueViewModel VenueById(int id);
 
         VenueViewModel UpdateVenue(VenueViewModel model);
+
+        void DeleteVenue(VenueViewModel model);
     }
 }

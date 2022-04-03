@@ -88,5 +88,26 @@ namespace GoSport.Controllers
 
             return this.View(venue);
         }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delete(int id)
+        {
+            var venue = this.venuesService.VenueById(id);
+            if (venue == null)
+            {
+                this.TempData["Message"] = ConstCore.VenueDoesNotExist;
+                return this.RedirectToAction("Invalid", "Home", new { area = "" });
+            }
+
+            return this.View(venue);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delete(VenueViewModel model)
+        {
+            this.venuesService.DeleteVenue(model);
+            return this.RedirectToAction("All", "Venues", new { area = "" });
+        }
     }
 }
