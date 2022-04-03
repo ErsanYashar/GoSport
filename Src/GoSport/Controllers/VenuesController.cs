@@ -75,5 +75,18 @@ namespace GoSport.Controllers
             this.ViewData["Message"] = ConstCore.VenueWasUpdated;
             return this.View();
         }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Details(int id)
+        {
+            var venue = this.venuesService.VenueById(id);
+            if (venue == null)
+            {
+                this.TempData["Message"] = ConstCore.VenueDoesNotExist;
+                return this.RedirectToAction("Invalid", "Home", new { area = "" });
+            }
+
+            return this.View(venue);
+        }
     }
 }

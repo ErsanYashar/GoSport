@@ -70,11 +70,19 @@ namespace GoSport.Core.Services
         {
             var venue = this.Context
               .Venues
+               .Select(x => new VenueViewModel
+               {
+                   Id = x.Id,
+                   Name = x.Name,
+                   ImageVenueUrl = x.ImageVenueUrl,
+                   Town = x.Town.Name,
+                   Address = x.Address,
+               })
               .FirstOrDefault(v => v.Id == id);
 
-            var venueViewModel = this.Mapper.Map<VenueViewModel>(venue);
+            //var venueViewModel = this.Mapper.Map<VenueViewModel>(venue);
 
-            return venueViewModel;
+            return venue;
         }
     }
 }
