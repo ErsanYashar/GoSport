@@ -1,12 +1,15 @@
 ﻿using GoSport.Core.Constants;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace GoSport.Core.ViewModel.Sport
 {
-    public class SportViewModel
+    public class AddSportViewModel
     {
-        public int Id { get; set; }
-
         [Required]
         [MinLength(ConstViewModel.MinSportNameLength, ErrorMessage = ConstViewModel.MinSportErrorMessage)]
         public string Name { get; set; }
@@ -14,9 +17,9 @@ namespace GoSport.Core.ViewModel.Sport
         [Required]
         public string Description { get; set; }
 
+
         [DataType(DataType.Text)]
         [Display(Name = "Image Url")]
         public string ImageSportUrl { get; set; }
-
     }
 }

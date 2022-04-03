@@ -6,7 +6,9 @@ using GoSport.Infrastructure.Data;
 using GoSport.Infrastructure.Data.DateModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +41,12 @@ builder.Services.AddDefaultIdentity<User>(options =>
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddMvc(option =>
+{
+    option.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+
+}).SetCompatibilityVersion(CompatibilityVersion.Version_2_0);
 
 
 builder.Services.ConfigureApplicationCookie(options =>

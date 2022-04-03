@@ -36,6 +36,8 @@ namespace GoSport.Core.AutoMapper
             // Sport
 
             this.CreateMap<Sport, SportViewModel>().ReverseMap();
+            this.CreateMap<Sport, AddSportViewModel>().ReverseMap();
+
 
             //Discipline
 

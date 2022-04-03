@@ -13,5 +13,9 @@ namespace GoSport.Core.Services.Interfaces
         IEnumerable<VenueViewModel> GetAllVenues();
 
         Venue AddVenue(AddVenueViewModel model);
+
+        VenueViewModel VenueById(int id);
+
+        VenueViewModel UpdateVenue(VenueViewModel model);
     }
 }

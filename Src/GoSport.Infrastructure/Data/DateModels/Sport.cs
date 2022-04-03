@@ -18,7 +18,7 @@ namespace GoSport.Infrastructure.Data.DateModels
 
         public string ImageSportUrl { get; set; }
 
-        public virtual ICollection<Discipline> Disciplines { get; set; } = new HashSet<Discipline>();
+        public virtual ICollection<Discipline> Disciplines { get; set; } = new List<Discipline>();
 
     }
 }

@@ -34,9 +34,9 @@ namespace GoSport.Core.Services
             var towns = this.Context
                 .Towns
                 .OrderBy(t => t.Name)
-                .AsQueryable();
+                .ToList();
 
-            var townViewModels = this.Mapper.Map<IQueryable<Town>, IEnumerable<TownViewModel>>(towns);
+            var townViewModels = this.Mapper.Map<IList<Town>, IEnumerable<TownViewModel>>(towns);
 
             return townViewModels;
         }

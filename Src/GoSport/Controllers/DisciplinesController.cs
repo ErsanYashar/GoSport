@@ -73,10 +73,16 @@ namespace GoSport.Controllers
         {
             this.ViewData["Sports"] = this.sportsService.GetAllSports();
 
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
             var discipline = this.disciplinesService.UpdateDiscipline(model);
+
             if (discipline == null)
             {
-                this.ViewData["Error"] = ConstViewModel.DisciplineWasNotUpdated;
+                this.ViewData["Error"] = ConstCore.DisciplineWasNotUpdated;
                 return this.View(model);
             }
 

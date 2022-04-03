@@ -20,6 +20,7 @@ namespace GoSport.Core.ViewModel.Venue
         public string ImageVenueUrl { get; set; }
 
         [Required]
+        [Display(Name = "Town")]
         public int TownId { get; set; }
 
     }

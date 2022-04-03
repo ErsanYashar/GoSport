@@ -27,7 +27,7 @@ namespace GoSport.Core.Services
 
         }
 
-        public Sport Add(SportViewModel model)
+        public Sport Add(AddSportViewModel model)
         {
             var sport = this.Mapper.Map<Sport>(model);
 

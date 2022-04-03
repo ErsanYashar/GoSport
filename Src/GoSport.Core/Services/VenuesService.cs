@@ -42,5 +42,39 @@ namespace GoSport.Core.Services
            // var venuesView = this.Mapper.Map<IList<Venue>, IEnumerable<VenueViewModel>>(venues);
             return venues;
         }
+
+        public VenueViewModel UpdateVenue(VenueViewModel model)
+        {
+            var venue = this.Context
+                .Venues
+                .FirstOrDefault(v => v.Id == model.Id);
+
+            if (venue == null)
+            {
+                return null;
+            }
+
+            venue.Name = model.Name;
+            venue.Address = model.Address;
+            venue.Capacity = model.Capacity;
+            venue.ImageVenueUrl = model.ImageVenueUrl;
+            venue.TownId = model.TownId;
+            this.Context.SaveChanges();
+
+            var venueModel = this.Mapper.Map<VenueViewModel>(venue);
+
+            return venueModel;
+        }
+
+        public VenueViewModel VenueById(int id)
+        {
+            var venue = this.Context
+              .Venues
+              .FirstOrDefault(v => v.Id == id);
+
+            var venueViewModel = this.Mapper.Map<VenueViewModel>(venue);
+
+            return venueViewModel;
+        }
     }
 }

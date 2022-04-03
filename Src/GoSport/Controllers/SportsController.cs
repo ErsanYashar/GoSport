@@ -38,7 +38,7 @@ namespace GoSport.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public IActionResult Add(SportViewModel model)
+        public IActionResult Add(AddSportViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
