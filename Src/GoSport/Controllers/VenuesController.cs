@@ -109,5 +109,19 @@ namespace GoSport.Controllers
             this.venuesService.DeleteVenue(model);
             return this.RedirectToAction("All", "Venues", new { area = "" });
         }
+
+        public IActionResult AllVenues()
+        {
+            this.ViewData["Towns"] = this.townsService.GetAllTownNames();
+            return this.View();
+        }
+
+        [HttpPost]
+        public IActionResult AllVenues(SearchTownViewModel model)
+        {
+            this.ViewData["Towns"] = this.townsService.GetAllTownNames();
+            this.ViewData["Venues"] = this.venuesService.AllVenuesByTownId(model.TownId);
+            return this.View();
+        }
     }
 }

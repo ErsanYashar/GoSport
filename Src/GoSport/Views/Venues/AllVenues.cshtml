@@ -1,0 +1,54 @@
+﻿@using GoSport.Core.ViewModel.Town
+@using GoSport.Core.ViewModel.Venue
+@model SearchTownViewModel
+
+@{
+    ViewData["Title"] = "AllVenues";
+}
+
+<h1 class="text-center text-primary">Select Town</h1>
+
+<div class="row">
+    <div class="col-md-4 offset-4">
+        <form asp-area="" asp-controller="Venues" asp-action="AllVenues" class="form-inline" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <select asp-for="TownId" class="form-control">
+                    <option selected>Select Country</option>
+                    @foreach (var name in this.ViewData["Towns"] as IEnumerable<SelectTownViewModel>)
+                    {
+                        <option value="@name.Id">@name.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="TownId" class="text-danger"></span>
+                <div class="text-center text-primary">
+                    <input type="submit" value="Search" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (this.ViewData.ContainsKey("Venues"))
+{
+    foreach (var venue in this.ViewData["Venues"] as IEnumerable<VenueViewModel>)
+    {
+        <hr style="height: 1px; background-color:striped" />
+
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Venue:</h4>
+                <p> @venue.Name</p>
+                <h4>Address:</h4>
+                <p>@venue.Address</p>
+                <h4>Capacity:</h4>
+                <p>@venue.Capacity</p>
+                <h4>Town:</h4>
+                <p>@venue.Town</p>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="@venue.ImageVenueUrl" alt="@venue.Name" width="500" />
+            </div>
+        </div>
+    }
+}

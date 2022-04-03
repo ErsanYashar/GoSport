@@ -24,6 +24,25 @@ namespace GoSport.Core.Services
             return venue;
         }
 
+        public IEnumerable<VenueViewModel> AllVenuesByTownId(int townId)
+        {
+            var venues = this.Context
+                .Venues
+                .Where(v => v.TownId == townId)
+                 .Select(x => new VenueViewModel
+                 {
+                     Id = x.Id,
+                     Name = x.Name,
+                     ImageVenueUrl = x.ImageVenueUrl,
+                     Town = x.Town.Name,
+                     Address = x.Address,
+                 })
+                .OrderBy(v => v.Name)
+                .ToList();
+
+            return venues;
+        }
+
         public void DeleteVenue(VenueViewModel model)
         {
             var venue = this.Context
@@ -93,8 +112,6 @@ namespace GoSport.Core.Services
                    Address = x.Address,
                })
               .FirstOrDefault(v => v.Id == id);
-
-            //var venueViewModel = this.Mapper.Map<VenueViewModel>(venue);
 
             return venue;
         }

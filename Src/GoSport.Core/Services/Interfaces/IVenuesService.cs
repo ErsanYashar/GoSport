@@ -19,5 +19,7 @@ namespace GoSport.Core.Services.Interfaces
         VenueViewModel UpdateVenue(VenueViewModel model);
 
         void DeleteVenue(VenueViewModel model);
+
+        IEnumerable<VenueViewModel> AllVenuesByTownId(int townId);
     }
 }
