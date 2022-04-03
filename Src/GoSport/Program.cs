@@ -25,6 +25,7 @@ builder.Services.AddTransient<IDisciplinesService, DisciplinesService>();
 builder.Services.AddTransient<IMessagesService, MessagesService>();
 builder.Services.AddTransient<IOrganizersService, OrganizersService>();
 builder.Services.AddTransient<IVenuesService, VenuesService>();
+builder.Services.AddTransient<IEventsService, EventsService>();
 
 
 
@@ -42,11 +43,6 @@ builder.Services.AddDefaultIdentity<User>(options =>
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddMvc(option =>
-{
-    option.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-
-}).SetCompatibilityVersion(CompatibilityVersion.Version_2_0);
 
 
 builder.Services.ConfigureApplicationCookie(options =>

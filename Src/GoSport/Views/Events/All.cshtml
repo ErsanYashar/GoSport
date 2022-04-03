@@ -1,0 +1,64 @@
+﻿@using GoSport.Core.ViewModel.Event
+@model IEnumerable<EventViewModel>
+
+@{
+    ViewData["Title"] = "All";
+}
+
+<h1 class="text-center text-primary">Events</h1>
+
+<table class="table mx-auto table-hover table-bordered table-striped">
+    <thead>
+        <tr class="row table-primary">
+            <th class="col-md-2 text-center">
+                Event Name
+            </th>
+            <th class="col-md-2 text-center">
+                Date
+            </th>
+            <th class="col-md-1 text-center">
+                Time
+            </th>
+            <th class="col-md-2 text-center">
+                Organizer
+            </th>
+            <th class="col-md-2 text-center">
+                Discipline
+            </th>
+            <th class="col-md-2 text-center">
+                Venue
+            </th>
+            <th class="col-md-1 text-center">
+                Number of Participants
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="row table-striped">
+                <td class="col-md-2 text-center">
+                    @item.EventName
+                </td>
+                <td class="col-md-2 text-center">
+                    @item.Date
+                </td>
+                <td class="col-md-1 text-center">
+                    @item.Time
+                </td>
+                <td class="col-md-2 text-center">
+                    @item.Organizer
+                </td>
+                <td class="col-md-2 text-center">
+                    @item.Discipline
+                </td>
+                <td class="col-md-2 text-center">
+                    @item.Venue
+                </td>
+                <td class="col-md-1 text-center">
+                    @item.NumberOfParticipants
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
