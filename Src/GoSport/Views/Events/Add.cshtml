@@ -1,0 +1,102 @@
+﻿@using GoSport.Core.ViewModel.Discipline
+@using GoSport.Core.ViewModel.Event
+@using GoSport.Core.ViewModel.Organizer
+@using GoSport.Core.ViewModel.Venue
+@model CreateEventViewModel
+
+@{
+    ViewData["Title"] = "Add Event";
+}
+
+<h1 class="text-center text-primary">Create Event</h1>
+
+<div class="row text-center">
+    <div class="col-md-4 offset-md-4">
+        <form asp-area="" asp-controller="Events" asp-action="Add" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EventName" class="control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                    </div>
+                    <input asp-for="EventName" class="form-control" placeholder="Event Name" />
+                </div>
+                <span asp-validation-for="EventName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                    </div>
+                    <input asp-for="Date" class="form-control"/>
+                </div>
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="DisciplineId" class="control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-running"></i></span>
+                    </div>
+                    <select asp-for="DisciplineId" class="form-control">
+                        <option selected>Select Discipline</option>
+                        @foreach (var discipline in this.ViewData["Disciplines"] as IEnumerable<DisciplineViewModel>)
+                        {
+                            <option value="@discipline.Id">@discipline.Name</option>
+                        }
+                    </select>
+                </div>
+                <span asp-validation-for="DisciplineId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrganizerId" class="control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <select asp-for="OrganizerId" class="form-control">
+                        <option selected>Select Organizer</option>
+                        @foreach (var item in this.ViewData["Organizers"] as IEnumerable<OrganizerViewModel>)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+                <span asp-validation-for="OrganizerId" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="VenueId" class="control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-archway"></i></span>
+                    </div>
+                    <select asp-for="VenueId" class="form-control">
+                        <option selected>Select Venue</option>
+                        @foreach (var venue in this.ViewData["Venues"] as IEnumerable<VenueViewModel>)
+                        {
+                            <option value="@venue.Id">@venue.Name</option>
+                        }
+                    </select>
+                </div>
+                <span asp-validation-for="VenueId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfParticipants" class="control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-users"></i></span>
+                    </div>
+                    <input asp-for="NumberOfParticipants" class="form-control" placeholder="Number of participants" />
+                </div>
+                <span asp-validation-for="NumberOfParticipants" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Add Event" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

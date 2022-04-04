@@ -15,9 +15,9 @@ namespace GoSport.Infrastructure.Data.DateModels
 
         public DateTime Date { get; set; }
 
-        public int OrganizationId { get; set; }
+        public int OrganizerId { get; set; }
 
-        [ForeignKey(nameof(OrganizationId))]
+        [ForeignKey(nameof(OrganizerId))]
         public virtual Organizer Organizer { get; set; }
 
         public int DisciplineId { get; set; }

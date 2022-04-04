@@ -6,7 +6,7 @@ using static GoSport.Infrastructure.Data.DataConst.DataConstants;
 namespace GoSport.Infrastructure.Data.DateModels
 {
     public class User : IdentityUser
-    { 
+    {
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }

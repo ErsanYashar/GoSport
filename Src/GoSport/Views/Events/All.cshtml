@@ -1,4 +1,7 @@
 ﻿@using GoSport.Core.ViewModel.Event
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
 @model IEnumerable<EventViewModel>
 
 @{
@@ -6,6 +9,9 @@
 }
 
 <h1 class="text-center text-primary">Events</h1>
+<p class="text-center">
+    <a asp-area="" asp-controller="Events" asp-action="Add" class="btn btn-primary btn-lg">Add Events</a>
+</p>
 
 <table class="table mx-auto table-hover table-bordered table-striped">
     <thead>
@@ -62,3 +68,17 @@
         }
     </tbody>
 </table>
+
+<div class="text-center">
+    @Html.PagedListPager((IPagedList)@Model, page => Url.Action("All", new { page = page }),
+        new PagedListRenderOptions
+        {
+            DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+            DisplayLinkToLastPage = PagedListDisplayMode.Always,
+            DisplayLinkToNextPage = PagedListDisplayMode.Never,
+            DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+            UlElementClasses = new string[] { "pagination", "justify-content-center" },
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" },
+        })
+</div>

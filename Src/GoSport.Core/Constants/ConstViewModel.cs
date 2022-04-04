@@ -91,5 +91,14 @@ namespace GoSport.Core.Constants
         public const int MinVenueCapacity = 2;
         public const int MaxVenueCapacity = 50;
         public const string CapacityErrorMessage = "Тhe capacity should be between 2 and 50";
+
+        public const int minEvendNameLength = 2;
+        public const string minEvendNameLengthErrorMessage = "The event name must be at least 2 characters long.";
+
+        public const int minNumberOfParticipants = 1;
+        public const int maxNumberOfParticipants = 50;
+        public const string NumberOfParticipantsErrorMessage = "Тhe number of participants should be between 1 and 50";
+
+
     }
 }

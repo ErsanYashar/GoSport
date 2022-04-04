@@ -68,17 +68,10 @@ namespace GoSport.Core.AutoMapper
             this.CreateMap<Venue, AddVenueViewModel>().ReverseMap();
 
             //Event
-            this.CreateMap<Event, EventViewModel>()
-              .ForMember(evm => evm.Date, e => e.MapFrom(x => x.Date.ToString("dd MMMM yyyy, dddd", CultureInfo.InvariantCulture)))
-              .ForMember(evm => evm.Time, e => e.MapFrom(x => x.Date.ToString("HH:mm")))
-              .ForMember(evm => evm.ImageVenueUrl, e => e.MapFrom(x => x.Venue.ImageVenueUrl))
-              .ForMember(evm => evm.Organizer, e => e.MapFrom(x => x.Organizer.Name))
-              .ForMember(evm => evm.Sport, e => e.MapFrom(x => x.Discipline.Sport.Name))
-              .ForMember(evm => evm.Discipline, e => e.MapFrom(x => x.Discipline.Name))
-              .ForMember(evm => evm.Town, e => e.MapFrom(x => x.Venue.Town.Name))
-              .ForMember(evm => evm.Venue, e => e.MapFrom(x => x.Venue.Name))
-              .ForMember(evm => evm.RealDate, e => e.MapFrom(x => x.Date))
-              .ReverseMap();
+            this.CreateMap<Event, EventViewModel>();
+
+            this.CreateMap<Event, CreateEventViewModel>()
+          .ReverseMap();
 
 
 

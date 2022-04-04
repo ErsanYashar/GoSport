@@ -1,4 +1,5 @@
 ﻿using GoSport.Core.Services.Interfaces;
+using GoSport.Core.ViewModel.Event;
 using GoSport.Infrastructure.Data.DateModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -34,6 +35,28 @@ namespace GoSport.Controllers
             var eventsPage = events.ToPagedList(pageNumber, 10);
 
             return this.View(eventsPage);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Add()
+        {
+            this.ViewData["Organizers"] = this.organizersService.AllOrganizers();
+            this.ViewData["Disciplines"] = this.disciplinesService.GetAllDisciplines();
+            this.ViewData["Venues"] = this.venuesService.GetAllVenues();
+            return this.View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Add(CreateEventViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            this.eventsService.Add(model);
+            return this.RedirectToAction("All", "Events", new { area = "" });
         }
 
     }

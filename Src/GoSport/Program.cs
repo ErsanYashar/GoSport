@@ -29,6 +29,7 @@ builder.Services.AddTransient<IEventsService, EventsService>();
 
 
 
+
 builder.Services.AddDefaultIdentity<User>(options =>
    {
        options.SignIn.RequireConfirmedAccount = false;
