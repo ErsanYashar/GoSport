@@ -1,4 +1,5 @@
-﻿using GoSport.Core.Services.Interfaces;
+﻿using GoSport.Core.Constants;
+using GoSport.Core.Services.Interfaces;
 using GoSport.Core.ViewModel.Event;
 using GoSport.Infrastructure.Data.DateModels;
 using Microsoft.AspNetCore.Authorization;
@@ -58,6 +59,47 @@ namespace GoSport.Controllers
             this.eventsService.Add(model);
             return this.RedirectToAction("All", "Events", new { area = "" });
         }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Edit(int id)
+        {
+            this.ViewData["Organizers"] = this.organizersService.AllOrganizers();
+            this.ViewData["Disciplines"] = this.disciplinesService.GetAllDisciplines();
+            this.ViewData["Venues"] = this.venuesService.GetAllVenues();
+            var eventUpdate = this.eventsService.EventUpdateById(id);
+            if (eventUpdate == null)
+            {
+                this.TempData["Message"] = ConstCore.EventDoesNotExist;
+                return this.RedirectToAction("Invalid", "Home", new { area = "" });
+            }
+
+            return this.View(eventUpdate);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Edit(UpdateEventViewModel model)
+        {
+            this.ViewData["Organizers"] = this.organizersService.AllOrganizers();
+            this.ViewData["Disciplines"] = this.disciplinesService.GetAllDisciplines();
+            this.ViewData["Venues"] = this.venuesService.GetAllVenues();
+
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            var updateEvent = this.eventsService.UpdateEvent(model);
+            if (updateEvent == null)
+            {
+                this.ViewData["Error"] = ConstCore.EventWasNotUpdated;
+                return this.View(model);
+            }
+
+            this.ViewData["Message"] = ConstCore.EventWasUpdated;
+            return this.View();
+        }
+
 
     }
 }

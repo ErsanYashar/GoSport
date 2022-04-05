@@ -14,7 +14,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <select asp-for="TownId" class="form-control">
-                    <option selected>Select Country</option>
+                    <option selected>Select Town</option>
                     @foreach (var name in this.ViewData["Towns"] as IEnumerable<SelectTownViewModel>)
                     {
                         <option value="@name.Id">@name.Name</option>

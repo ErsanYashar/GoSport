@@ -13,5 +13,8 @@ namespace GoSport.Core.Services.Interfaces
         IEnumerable<EventViewModel> AllEvents();
 
         Event Add(CreateEventViewModel model);
+
+        UpdateEventViewModel EventUpdateById(int id);
+        UpdateEventViewModel UpdateEvent(UpdateEventViewModel model);
     }
 }

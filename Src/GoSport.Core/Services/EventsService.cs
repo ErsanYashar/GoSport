@@ -36,6 +36,7 @@ namespace GoSport.Core.Services
                 .Events
                 .Select(x => new EventViewModel
                 {
+                    Id=x.Id,
                     EventName = x.EventName,
                     Date = x.Date.ToString("dd MMMM yyyy, dddd", CultureInfo.InvariantCulture),
                     Time = x.Date.ToString("HH:mm"),
@@ -55,6 +56,41 @@ namespace GoSport.Core.Services
             //var eventsView = this.Mapper.Map<IList<Event>, IEnumerable<EventViewModel>>(events);
 
             return events;
+        }
+
+        public UpdateEventViewModel EventUpdateById(int id)
+        {
+            var eventUpdate = this.Context
+               .Events
+               .FirstOrDefault(e => e.Id == id);
+
+            var eventViewModel = this.Mapper.Map<UpdateEventViewModel>(eventUpdate);
+
+            return eventViewModel;
+        }
+
+        public UpdateEventViewModel UpdateEvent(UpdateEventViewModel model)
+        {
+            var updateEvent = this.Context
+             .Events
+             .FirstOrDefault(e => e.Id == model.Id);
+
+            if (updateEvent == null)
+            {
+                return null;
+            }
+
+            updateEvent.EventName = model.EventName;
+            updateEvent.Date = model.Date;
+            updateEvent.OrganizerId = model.OrganizerId;
+            updateEvent.DisciplineId = model.DisciplineId;
+            updateEvent.VenueId = model.VenueId;
+            updateEvent.NumberOfParticipants = model.NumberOfParticipants;
+            this.Context.SaveChanges();
+
+            var eventViewModel = this.Mapper.Map<UpdateEventViewModel>(updateEvent);
+
+            return eventViewModel;
         }
     }
 }

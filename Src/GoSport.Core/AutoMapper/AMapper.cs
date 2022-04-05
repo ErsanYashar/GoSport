@@ -64,14 +64,13 @@ namespace GoSport.Core.AutoMapper
 
             // Venues
             this.CreateMap<Venue, VenueViewModel>().ReverseMap();
-
             this.CreateMap<Venue, AddVenueViewModel>().ReverseMap();
 
             //Event
             this.CreateMap<Event, EventViewModel>();
-
+            this.CreateMap<Event, UpdateEventViewModel>();
             this.CreateMap<Event, CreateEventViewModel>()
-          .ReverseMap();
+           .ReverseMap();
 
 
 

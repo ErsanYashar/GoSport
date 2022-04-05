@@ -22,5 +22,8 @@
         public const string VenueWasNotUpdated = "Venue Was Not Updated";
         public const string VenueWasUpdated = "Venue Was Updated";
         public const string DisciplineWasNotUpdated = "Discipline Was Not Updated";
+        public const string EventDoesNotExist = "Event Does Not Exist";
+        public const string EventWasNotUpdated = "Event Was Not Updated";
+        public const string EventWasUpdated = "Event Was Updated";
     }
 }

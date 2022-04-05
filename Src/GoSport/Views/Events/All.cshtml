@@ -16,7 +16,7 @@
 <table class="table mx-auto table-hover table-bordered table-striped">
     <thead>
         <tr class="row table-primary">
-            <th class="col-md-2 text-center">
+            <th class="col-md-1 text-center">
                 Event Name
             </th>
             <th class="col-md-2 text-center">
@@ -25,10 +25,10 @@
             <th class="col-md-1 text-center">
                 Time
             </th>
-            <th class="col-md-2 text-center">
+            <th class="col-md-1 text-center">
                 Organizer
             </th>
-            <th class="col-md-2 text-center">
+            <th class="col-md-1 text-center">
                 Discipline
             </th>
             <th class="col-md-2 text-center">
@@ -37,13 +37,16 @@
             <th class="col-md-1 text-center">
                 Number of Participants
             </th>
+              <th class="col-md-3 text-center">
+            Action
+        </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr class="row table-striped">
-                <td class="col-md-2 text-center">
+                <td class="col-md-1 text-center">
                     @item.EventName
                 </td>
                 <td class="col-md-2 text-center">
@@ -52,10 +55,10 @@
                 <td class="col-md-1 text-center">
                     @item.Time
                 </td>
-                <td class="col-md-2 text-center">
+                <td class="col-md-1 text-center">
                     @item.Organizer
                 </td>
-                <td class="col-md-2 text-center">
+                <td class="col-md-1 text-center">
                     @item.Discipline
                 </td>
                 <td class="col-md-2 text-center">
@@ -63,6 +66,11 @@
                 </td>
                 <td class="col-md-1 text-center">
                     @item.NumberOfParticipants
+                </td>
+                 <td class="col-md-3 text-center">
+                <a asp-area="" asp-controller="Events" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                <a asp-area="" asp-controller="Events" asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Details</a>
+                <a asp-area="" asp-controller="Events" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }
