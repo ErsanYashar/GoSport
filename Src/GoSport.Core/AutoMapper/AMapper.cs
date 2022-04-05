@@ -68,6 +68,7 @@ namespace GoSport.Core.AutoMapper
 
             //Event
             this.CreateMap<Event, EventViewModel>();
+            this.CreateMap<Event, EventViewModel>().ReverseMap();
             this.CreateMap<Event, UpdateEventViewModel>();
             this.CreateMap<Event, CreateEventViewModel>()
            .ReverseMap();

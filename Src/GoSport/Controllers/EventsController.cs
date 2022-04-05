@@ -67,6 +67,7 @@ namespace GoSport.Controllers
             this.ViewData["Disciplines"] = this.disciplinesService.GetAllDisciplines();
             this.ViewData["Venues"] = this.venuesService.GetAllVenues();
             var eventUpdate = this.eventsService.EventUpdateById(id);
+
             if (eventUpdate == null)
             {
                 this.TempData["Message"] = ConstCore.EventDoesNotExist;
@@ -98,6 +99,18 @@ namespace GoSport.Controllers
 
             this.ViewData["Message"] = ConstCore.EventWasUpdated;
             return this.View();
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Details(int id)
+        {
+            var @event = this.eventsService.GetEventById(id);
+            if (@event == null)
+            {
+                this.TempData["Message"] = ConstCore.EventDoesNotExist;
+                return this.RedirectToAction("Invalid", "Home", new { area = "" });
+            }
+            return this.View(@event);
         }
 
 

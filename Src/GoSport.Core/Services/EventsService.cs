@@ -69,6 +69,32 @@ namespace GoSport.Core.Services
             return eventViewModel;
         }
 
+        public EventViewModel GetEventById(int id)
+        {
+            var getEvent = this.Context
+              .Events
+               .Select(x => new EventViewModel
+               {
+                   Id = x.Id,
+                   EventName = x.EventName,
+                   Date = x.Date.ToString("dd MMMM yyyy, dddd", CultureInfo.InvariantCulture),
+                   Time = x.Date.ToString("HH:mm"),
+                   ImageVenueUrl = x.Venue.ImageVenueUrl,
+                   Organizer = x.Organizer.Name,
+                   Sport = x.Discipline.Sport.Name,
+                   Discipline = x.Discipline.Name,
+                   Town = x.Venue.Town.Name,
+                   Venue = x.Venue.Name,
+                   RealDate = x.Date,
+                   NumberOfParticipants = x.NumberOfParticipants
+               })
+              .FirstOrDefault(e => e.Id == id);
+
+           // var eventViewModel = this.Mapper.Map<EventViewModel>(getEvent);
+
+            return getEvent;
+        }
+
         public UpdateEventViewModel UpdateEvent(UpdateEventViewModel model)
         {
             var updateEvent = this.Context
