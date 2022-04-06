@@ -113,6 +113,42 @@ namespace GoSport.Controllers
             return this.View(@event);
         }
 
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delete(int id)
+        {
+            var eventDelete = this.eventsService.GetEventById(id);
+            if (eventDelete == null)
+            {
+                this.TempData["Message"] = ConstCore.EventDoesNotExist;
+                return this.RedirectToAction("Invalid", "Home", new { area = ""});
+            }
+            return this.View(eventDelete);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delete(EventViewModel model)
+        {
+            this.eventsService.DeleteEvent(model);
+            return this.RedirectToAction("All", "Events");
+        }
+
+        [HttpPost]
+        public IActionResult EventsInTown(SearchTownViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                this.ViewData["Town"] = this.townsService.GetAllTownNames();
+                return this.RedirectToAction("Index", "Home");
+            }
+
+            this.ViewData["Town"] = this.townsService.GetTownById(model.TownId).Name;
+            var events = this.eventsService.AllEventsInTown(model);
+
+            return this.View(events);
+        }
+
+
 
     }
 }

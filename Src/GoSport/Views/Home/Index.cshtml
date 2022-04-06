@@ -1,8 +1,35 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using GoSport.Core.ViewModel.Event
+@using GoSport.Core.ViewModel.Town
+@model SearchTownViewModel
+
+@{
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to User</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<p>
+
+</p>
+<h2 class="text-primary text-center">GoSport</h2>
+
+<div class="row">
+    <div class="col-md-4 offset-4">
+        <form asp-area="" asp-controller="Events" asp-action="EventsInTown" class="form-inline" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <select asp-for="TownId" class="form-control">
+                    <option selected>Select Town</option>
+                    @foreach (var name in this.ViewData["Town"] as IEnumerable<SelectTownViewModel>)
+                    {
+                        <option value="@name.Id">@name.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="TownId" class="text-danger"></span>
+                <div class="form-group">
+                     <div class="text-center">
+                    <input type="submit" value="Search" class="btn btn-primary"/>
+                        </div>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>

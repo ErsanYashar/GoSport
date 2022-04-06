@@ -15,9 +15,12 @@ namespace GoSport.Core.Services
 {
     public class EventsService : BaseService, IEventsService
     {
-        public EventsService(IMapper mapper, UserManager<User> userManager, ApplicationDbContext context) 
+
+        private readonly ITown townsService;
+        public EventsService(IMapper mapper, UserManager<User> userManager, ApplicationDbContext context, ITown townsService)
             : base(mapper, userManager, context)
         {
+            this.townsService = townsService;
         }
 
         public Event Add(CreateEventViewModel model)
@@ -58,6 +61,44 @@ namespace GoSport.Core.Services
             return events;
         }
 
+        public IEnumerable<EventViewModel> AllEventsInTown(SearchTownViewModel model)
+        {
+            
+            var events = this.Context
+                .Events
+                .Where(e => e.Venue.TownId == model.TownId)
+                   .Select(x => new EventViewModel
+                   {
+                       EventName = x.EventName,
+                       Date = x.Date.ToString("dd MMMM yyyy, dddd", CultureInfo.InvariantCulture),
+                       Time = x.Date.ToString("HH:mm"),
+                       ImageVenueUrl = x.Venue.ImageVenueUrl,
+                       Organizer = x.Organizer.Name,
+                       Sport = x.Discipline.Sport.Name,
+                       Discipline = x.Discipline.Name,
+                       Town = x.Venue.Town.Name,
+                       Venue = x.Venue.Name,
+                       RealDate = x.Date,
+                       NumberOfParticipants = x.NumberOfParticipants
+                   })
+                .ToList();
+
+            return events;
+        }
+
+        public void DeleteEvent(EventViewModel model)
+        {
+            var eventDelete = this.Context
+              .Events
+              .FirstOrDefault(d => d.Id == model.Id);
+
+            if (eventDelete != null)
+            {
+                this.Context.Events.Remove(eventDelete);
+                this.Context.SaveChanges();
+            }
+        }
+
         public UpdateEventViewModel EventUpdateById(int id)
         {
             var eventUpdate = this.Context
@@ -89,8 +130,6 @@ namespace GoSport.Core.Services
                    NumberOfParticipants = x.NumberOfParticipants
                })
               .FirstOrDefault(e => e.Id == id);
-
-           // var eventViewModel = this.Mapper.Map<EventViewModel>(getEvent);
 
             return getEvent;
         }

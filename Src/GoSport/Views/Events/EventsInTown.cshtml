@@ -1,0 +1,40 @@
+﻿@using GoSport.Core.ViewModel.Event
+@model  IEnumerable<EventViewModel>
+
+@{
+    ViewData["Title"] = "Sport Events in ";
+}
+
+<h1 class="text-center text-primary">@this.ViewData["Title"] @this.ViewData["Town"]</h1>
+
+@if (this.Model.Count() != 0)
+{
+    foreach (var item in Model)
+    {
+        <h4>@item.Date</h4>
+        <table class="table">
+            <tr class="row">
+                <td class="col-md-1 text-left"><strong>@item.Time</strong></td>
+                <td class="col-md-2 text-left">@item.EventName</td>
+                <td class="col-md-2 text-left">@item.Sport</td>
+                <td class="col-md-2 text-left">@item.Discipline</td>
+                <td class="col-md-2 text-left">@item.Venue, @item.Town</td>
+                @if (@item.RealDate < DateTime.UtcNow)
+                {
+                    <td class="col-md-3 text-center">
+                        <a asp-area="" asp-controller="Events" asp-action="UpcomingEvent" asp-route-id="@item.Id" class="btn btn-danger disabled">Past Event</a>
+                    </td>
+                }
+                else
+                {
+                    <td class="col-md-3 text-center"><a asp-area="" asp-controller="Events" asp-action="UpcomingEvent" asp-route-id="@item.Id" class="btn btn-success">Upcoming Event</a></td>
+                }
+            </tr>
+        </table>
+        <br />
+    }
+}
+else
+{
+    <h2 class="text-center">There are not events!</h2>
+}

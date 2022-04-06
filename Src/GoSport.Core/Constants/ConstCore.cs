@@ -2,7 +2,7 @@
 {
     public static class ConstCore
     {
-        public const string Town = "Towns";
+        public const string Town = "Town";
 
         public const string UsernameEror = "Username already exists!";
         public const string UserOrPasInv = "Username or password are invalid!";
