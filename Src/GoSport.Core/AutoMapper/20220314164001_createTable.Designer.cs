@@ -4,6 +4,7 @@ using GoSport.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,13 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GoSport.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220314164001_createTable")]
+    partial class createTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.2")
+                .HasAnnotation("ProductVersion", "6.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -87,7 +89,7 @@ namespace GoSport.Infrastructure.Migrations
                     b.Property<int>("NumberOfParticipants")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrganizerId")
+                    b.Property<int>("OrganizationId")
                         .HasColumnType("int");
 
                     b.Property<int>("VenueId")
@@ -97,27 +99,11 @@ namespace GoSport.Infrastructure.Migrations
 
                     b.HasIndex("DisciplineId");
 
-                    b.HasIndex("OrganizerId");
+                    b.HasIndex("OrganizationId");
 
                     b.HasIndex("VenueId");
 
                     b.ToTable("Events");
-                });
-
-            modelBuilder.Entity("GoSport.Infrastructure.Data.DateModels.EventUser", b =>
-                {
-                    b.Property<int>("EventId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasIndex("EventId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("EventUsers");
                 });
 
             modelBuilder.Entity("GoSport.Infrastructure.Data.DateModels.Message", b =>
@@ -201,8 +187,8 @@ namespace GoSport.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(800)
-                        .HasColumnType("nvarchar(800)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ImageSportUrl")
                         .IsRequired()
@@ -293,12 +279,13 @@ namespace GoSport.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("PhotoUrl")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TownId")
+                    b.Property<int?>("TownId")
                         .HasColumnType("int");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -531,7 +518,7 @@ namespace GoSport.Infrastructure.Migrations
 
                     b.HasOne("GoSport.Infrastructure.Data.DateModels.Organizer", "Organizer")
                         .WithMany("Events")
-                        .HasForeignKey("OrganizerId")
+                        .HasForeignKey("OrganizationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -546,25 +533,6 @@ namespace GoSport.Infrastructure.Migrations
                     b.Navigation("Organizer");
 
                     b.Navigation("Venue");
-                });
-
-            modelBuilder.Entity("GoSport.Infrastructure.Data.DateModels.EventUser", b =>
-                {
-                    b.HasOne("GoSport.Infrastructure.Data.DateModels.Event", "Event")
-                        .WithMany()
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GoSport.Infrastructure.Data.DateModels.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Event");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("GoSport.Infrastructure.Data.DateModels.Message", b =>
@@ -591,13 +559,9 @@ namespace GoSport.Infrastructure.Migrations
 
             modelBuilder.Entity("GoSport.Infrastructure.Data.DateModels.User", b =>
                 {
-                    b.HasOne("GoSport.Infrastructure.Data.DateModels.Town", "Town")
+                    b.HasOne("GoSport.Infrastructure.Data.DateModels.Town", null)
                         .WithMany("Users")
-                        .HasForeignKey("TownId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Town");
+                        .HasForeignKey("TownId");
                 });
 
             modelBuilder.Entity("GoSport.Infrastructure.Data.DateModels.Venue", b =>

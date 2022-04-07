@@ -23,7 +23,14 @@
         public DbSet<Town> Towns { get; set; }
 
         public DbSet<Venue> Venues { get; set; }
+        public DbSet<EventUser> EventUsers { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<EventUser>()
+              .HasNoKey();
+        }
 
 
     }

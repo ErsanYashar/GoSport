@@ -34,6 +34,7 @@ namespace GoSport.Core.Services
                      Id = x.Id,
                      Name = x.Name,
                      ImageVenueUrl = x.ImageVenueUrl,
+                     Capacity = x.Capacity,
                      Town = x.Town.Name,
                      Address = x.Address,
                  })

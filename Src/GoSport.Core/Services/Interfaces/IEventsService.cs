@@ -19,5 +19,8 @@ namespace GoSport.Core.Services.Interfaces
         EventViewModel GetEventById(int id);
         void DeleteEvent(EventViewModel model);
         IEnumerable<EventViewModel> AllEventsInTown(SearchTownViewModel model);
+
+        bool IsUserParticipate(string userId, int eventId);
+        bool CheckForFreeSpace(int eventId);
     }
 }

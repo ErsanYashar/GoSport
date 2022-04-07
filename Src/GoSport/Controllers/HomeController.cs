@@ -30,11 +30,6 @@ namespace GoSport.Controllers
         }
 
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -45,6 +40,11 @@ namespace GoSport.Controllers
         public IActionResult Invalid()
         {
             this.ViewData["Message"] = this.TempData["Message"].ToString();
+            return this.View();
+        }
+
+        public IActionResult AboutUs()
+        {
             return this.View();
         }
     }

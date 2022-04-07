@@ -55,9 +55,6 @@ namespace GoSport.Core.Services
                 })
                 .ToList();
                 
-
-            //var eventsView = this.Mapper.Map<IList<Event>, IEnumerable<EventViewModel>>(events);
-
             return events;
         }
 
@@ -69,6 +66,7 @@ namespace GoSport.Core.Services
                 .Where(e => e.Venue.TownId == model.TownId)
                    .Select(x => new EventViewModel
                    {
+                       Id = x.Id,
                        EventName = x.EventName,
                        Date = x.Date.ToString("dd MMMM yyyy, dddd", CultureInfo.InvariantCulture),
                        Time = x.Date.ToString("HH:mm"),
@@ -84,6 +82,20 @@ namespace GoSport.Core.Services
                 .ToList();
 
             return events;
+        }
+
+        public bool CheckForFreeSpace(int eventId)
+        {
+            var userEvent = this.Context
+               .Events
+               .FirstOrDefault(e => e.Id == eventId);
+
+            var participants = this.Context
+                .EventUsers
+                .Where(e => e.EventId == eventId)
+                .Count();
+
+            return userEvent.NumberOfParticipants > participants;
         }
 
         public void DeleteEvent(EventViewModel model)
@@ -132,6 +144,12 @@ namespace GoSport.Core.Services
               .FirstOrDefault(e => e.Id == id);
 
             return getEvent;
+        }
+
+        public bool IsUserParticipate(string userId, int eventId)
+        {
+            var isUserParticipate = this.Context.EventUsers.Any(p => p.UserId == userId && p.EventId == eventId);
+            return isUserParticipate;
         }
 
         public UpdateEventViewModel UpdateEvent(UpdateEventViewModel model)

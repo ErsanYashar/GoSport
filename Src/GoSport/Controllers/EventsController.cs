@@ -120,7 +120,7 @@ namespace GoSport.Controllers
             if (eventDelete == null)
             {
                 this.TempData["Message"] = ConstCore.EventDoesNotExist;
-                return this.RedirectToAction("Invalid", "Home", new { area = ""});
+                return this.RedirectToAction("Invalid", "Home", new { area = "" });
             }
             return this.View(eventDelete);
         }
@@ -148,7 +148,30 @@ namespace GoSport.Controllers
             return this.View(events);
         }
 
+        [Authorize]
+        public IActionResult UpcomingEvent(int id)
+        {
+            var user = this.userManager.FindByNameAsync(this.User.Identity.Name).GetAwaiter().GetResult();
+            var userEvent = this.eventsService.GetEventById(id);
+            var isUserParticipate = this.eventsService.IsUserParticipate(user.Id, userEvent.Id);
+            var hasFreeSeats = this.eventsService.CheckForFreeSpace(id);
 
+            if (!hasFreeSeats)
+            {
+                this.ViewData["Error"] = ConstCore.NoFreeSeats;
+            }
+
+            if (isUserParticipate)
+            {
+                this.ViewData["Participate"] = true;
+            }
+            else
+            {
+                this.ViewData["Participate"] = false;
+            }
+
+            return this.View(userEvent);
+        }
 
     }
 }

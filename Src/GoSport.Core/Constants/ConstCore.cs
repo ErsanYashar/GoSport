@@ -25,5 +25,6 @@
         public const string EventDoesNotExist = "Event Does Not Exist";
         public const string EventWasNotUpdated = "Event Was Not Updated";
         public const string EventWasUpdated = "Event Was Updated";
+        public const string NoFreeSeats = "No Free Seats";
     }
 }

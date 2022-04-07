@@ -1,0 +1,103 @@
+﻿@using GoSport.Core.ViewModel.Event
+@model EventViewModel
+
+@{
+    ViewData["Title"] = "Upcoming Event";
+}
+
+<h1 class="text-center text-primary">@Model.EventName</h1>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-4">
+                <h4 class="text-right"><strong>Event:</strong></h4>
+            </div>
+            <div class="col-md-8">
+                <h4>@Model.EventName</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h4 class="text-right"><strong>Date:</strong></h4>
+            </div>
+            <div class="col-md-8">
+                <h4>@Model.Date</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h4 class="text-right"><strong>Time:</strong></h4>
+            </div>
+            <div class="col-md-8">
+                <h4>@Model.Time</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h4 class="text-right"><strong>Discipline:</strong></h4>
+            </div>
+            <div class="col-md-8">
+                <h4>@Model.Discipline</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h4 class="text-right"><strong>Sport:</strong></h4>
+            </div>
+            <div class="col-md-8">
+                <h4>@Model.Sport</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h4 class="text-right"><strong>Venue:</strong></h4>
+            </div>
+            <div class="col-md-8">
+                <h4>@Model.Venue</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h4 class="text-right"><strong>Town:</strong></h4>
+            </div>
+            <div class="col-md-8">
+                <h4>@Model.Town</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h4 class="text-right"><strong>Organizer:</strong></h4>
+            </div>
+            <div class="col-md-8">
+                <h4>@Model.Organizer</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 text-center">
+        <div>
+            <img src="@Model.ImageVenueUrl" alt="@Model.EventName" width="400" />
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="text-center">
+    @if (this.ViewData.ContainsKey("Error"))
+    {
+        <a asp-area="" asp-controller="Events" asp-action="Join" asp-route-id="@Model.Id" class="btn btn-warning btn-lg disabled">@this.ViewData["Error"]</a>
+    }
+    else
+    {
+        if ((bool)this.ViewData["Participate"] == false)
+        {
+            <a asp-area="" asp-controller="Events" asp-action="Join" asp-route-id="@Model.Id" class="btn btn-success btn-lg">Join</a>
+        }
+        else
+        {
+            <a asp-area="" asp-controller="Events" asp-action="Leave" asp-route-id="@Model.Id" class="btn btn-danger btn-lg">Leave</a>
+        }
+    }
+</div>
