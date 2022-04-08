@@ -198,7 +198,14 @@ namespace GoSport.Controllers
             return this.RedirectToAction("UpcomingEvent", "Events", new { id = id });
         }
 
+        [Authorize]
+        public IActionResult MyEvents()
+        {
+            var user = this.userManager.FindByNameAsync(this.User.Identity.Name).GetAwaiter().GetResult();
+            var events = this.eventsService.GetEventsWithMyParticipation(user.UserName);
+            return this.View(events);
 
+        }
 
     }
 }

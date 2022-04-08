@@ -146,6 +146,29 @@ namespace GoSport.Core.Services
             return getEvent;
         }
 
+        public IEnumerable<MyEventViewModel> GetEventsWithMyParticipation(string username)
+        {
+            var participant = this.Context
+              .EventUsers
+              .Where(p => p.User.UserName == username && p.Event.Date >= DateTime.UtcNow)
+               .OrderBy(p => p.Event.Date)
+              .Select(x => new MyEventViewModel
+              {
+                  EventName = x.Event.EventName,
+                  Date = x.Event.Date.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture),
+                  Time = x.Event.Date.ToString("HH:mm"),
+                  Sport = x.Event.Discipline.Sport.Name,
+                  Discipline = x.Event.Discipline.Name,
+                  Town = x.Event.Venue.Town.Name,
+                  Venue = x.Event.Venue.Name,
+                  RemainingTime = $"{Math.Ceiling((x.Event.Date - DateTime.UtcNow).TotalDays)}{"days"}"
+
+              })
+             .ToList();
+
+            return participant;
+        }
+
         public bool IsUserParticipate(string userId, int eventId)
         {
             var isUserParticipate = this.Context.EventUsers.Any(p => p.UserId == userId && p.EventId == eventId);

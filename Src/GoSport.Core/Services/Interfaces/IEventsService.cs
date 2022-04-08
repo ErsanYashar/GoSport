@@ -24,5 +24,6 @@ namespace GoSport.Core.Services.Interfaces
         bool CheckForFreeSpace(int eventId);
         EventUser JoinUserToEvent(string userId, int eventId);
         void LeaveUserFromEvent(string userId, int eventId);
+        IEnumerable<MyEventViewModel> GetEventsWithMyParticipation(string username);
     }
 }

@@ -1,0 +1,62 @@
+﻿@using GoSport.Core.ViewModel.Event
+@model IEnumerable<MyEventViewModel>
+
+@{
+    ViewData["Title"] = "MyEvents";
+}
+
+
+<h1 class="text-center text-primary">My Events</h1>
+
+
+<table class="table mx-auto table-hover table-bordered table-striped">
+    <thead>
+        <tr class="row table-primary">
+            <th class="col-md-1 text-center">
+                Date
+            </th>
+            <th class="col-md-1 text-center">
+                Time
+            </th>
+            <th class="col-md-2 text-center">
+                Event Name
+            </th>
+            <th class="col-md-1 text-center">
+                Town
+            </th>
+            <th class="col-md-2 text-center">
+                Venue
+            </th>
+            <th class="col-md-2 text-center">
+                Sport
+            </th>
+            <th class="col-md-2 text-center">
+                Discipline
+            </th>
+            <th class="col-md-1 text-center">
+                Remaining Days
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="row table-striped">
+                <td class="col-md-1 text-center">@item.Date</td>
+                <td class="col-md-1 text-center">@item.Time</td>
+                <td class="col-md-2 text-center">@item.EventName</td>
+                <td class="col-md-1 text-center">@item.Town</td>
+                <td class="col-md-2 text-center">@item.Venue</td>
+                <td class="col-md-2 text-center">@item.Sport</td>
+                <td class="col-md-2 text-center">@item.Discipline</td>
+                <td class="col-md-1 text-center text-success"><h6>@item.RemainingTime</h6></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+
+<div class="text-center">
+    <a asp-area="" asp-controller="Home" asp-action="Index">Back to home</a>
+</div>
