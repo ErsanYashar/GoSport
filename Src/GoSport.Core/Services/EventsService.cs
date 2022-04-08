@@ -166,6 +166,16 @@ namespace GoSport.Core.Services
             return participant;
         }
 
+        public void LeaveUserFromEvent(string userId, int eventId)
+        {
+            var participant = this.Context
+               .EventUsers
+               .FirstOrDefault(p => p.UserId == userId && p.EventId == eventId);
+
+            this.Context.Remove(participant);
+            this.Context.SaveChanges();
+        }
+
         public UpdateEventViewModel UpdateEvent(UpdateEventViewModel model)
         {
             var updateEvent = this.Context

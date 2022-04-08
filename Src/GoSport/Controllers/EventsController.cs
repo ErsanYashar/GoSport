@@ -188,6 +188,17 @@ namespace GoSport.Controllers
             return this.RedirectToAction("UpcomingEvent", "Events", new { id = id });
         }
 
+        [Authorize]
+        public IActionResult Leave(int id)
+        {
+            var user = this.userManager.FindByNameAsync(this.User.Identity.Name).GetAwaiter().GetResult();
+            var userEvent = this.eventsService.GetEventById(id);
+
+            this.eventsService.LeaveUserFromEvent(user.Id, userEvent.Id);
+            return this.RedirectToAction("UpcomingEvent", "Events", new { id = id });
+        }
+
+
 
     }
 }
