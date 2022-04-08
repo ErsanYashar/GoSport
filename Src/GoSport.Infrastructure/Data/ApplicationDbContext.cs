@@ -29,7 +29,7 @@
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<EventUser>()
-              .HasNoKey();
+             .HasKey(t => new { t.UserId, t.EventId });
         }
 
 

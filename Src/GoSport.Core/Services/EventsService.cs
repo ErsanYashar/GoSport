@@ -152,6 +152,20 @@ namespace GoSport.Core.Services
             return isUserParticipate;
         }
 
+        public EventUser JoinUserToEvent(string userId, int eventId)
+        {
+            var participant = new EventUser
+            {
+                UserId = userId,
+                EventId = eventId
+            };
+
+            this.Context.EventUsers.Add(participant);
+            this.Context.SaveChanges();
+
+            return participant;
+        }
+
         public UpdateEventViewModel UpdateEvent(UpdateEventViewModel model)
         {
             var updateEvent = this.Context

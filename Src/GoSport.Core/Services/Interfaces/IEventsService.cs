@@ -22,5 +22,6 @@ namespace GoSport.Core.Services.Interfaces
 
         bool IsUserParticipate(string userId, int eventId);
         bool CheckForFreeSpace(int eventId);
+        EventUser JoinUserToEvent(string userId, int eventId);
     }
 }

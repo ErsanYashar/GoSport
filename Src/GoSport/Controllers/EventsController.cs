@@ -173,5 +173,21 @@ namespace GoSport.Controllers
             return this.View(userEvent);
         }
 
+        [Authorize]
+        public IActionResult Join(int id)
+        {
+            var user = this.userManager.FindByNameAsync(this.User.Identity.Name).GetAwaiter().GetResult();
+            var userEvent = this.eventsService.GetEventById(id);
+
+            if (user == null || userEvent == null)
+            {
+                return this.RedirectToAction("Index", "Home", new { area = "" });
+            }
+
+            this.eventsService.JoinUserToEvent(user.Id, userEvent.Id);
+            return this.RedirectToAction("UpcomingEvent", "Events", new { id = id });
+        }
+
+
     }
 }
