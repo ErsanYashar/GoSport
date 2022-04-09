@@ -3,6 +3,7 @@ GoSport is a web application for sporting events. Its goal is to connect people 
 
 #### Technologies used
 - C#
+- MS Visual Studio 2022
 - NET Core 6.0
 - ASP.NET Core 6
 - MS SQL Server
