@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoSport", "GoSport\GoSport.csproj", "{39BC0F1E-8F82-445D-8F70-975C1FC66824}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoSport", "GoSport\GoSport.csproj", "{39BC0F1E-8F82-445D-8F70-975C1FC66824}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoSport.Core", "GoSport.Core\GoSport.Core.csproj", "{4BDC5C93-8722-4D84-8296-479A64068BF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoSport.Core", "GoSport.Core\GoSport.Core.csproj", "{4BDC5C93-8722-4D84-8296-479A64068BF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoSport.Infrastructure", "GoSport.Infrastructure\GoSport.Infrastructure.csproj", "{AD4D865D-E181-49D3-BBD0-0C94BD151B20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoSport.Infrastructure", "GoSport.Infrastructure\GoSport.Infrastructure.csproj", "{AD4D865D-E181-49D3-BBD0-0C94BD151B20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoSport.Test", "GoSport.Test\GoSport.Test.csproj", "{3C730680-EC6A-44AA-B216-2630B1E75007}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{AD4D865D-E181-49D3-BBD0-0C94BD151B20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD4D865D-E181-49D3-BBD0-0C94BD151B20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD4D865D-E181-49D3-BBD0-0C94BD151B20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C730680-EC6A-44AA-B216-2630B1E75007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C730680-EC6A-44AA-B216-2630B1E75007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C730680-EC6A-44AA-B216-2630B1E75007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C730680-EC6A-44AA-B216-2630B1E75007}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
