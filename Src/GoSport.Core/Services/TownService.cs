@@ -43,6 +43,7 @@ namespace GoSport.Core.Services
 
         public Town AddTown(TownViewModel model)
         {
+
             var town = this.Mapper.Map<Town>(model);
 
             this.Context.Towns.Add(town);
