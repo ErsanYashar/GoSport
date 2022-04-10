@@ -70,7 +70,6 @@ namespace GoSport.Core.Services
                  Description = x.Description,
                  SportId = x.SportId,
                  SportName = x.Sport.Name
-
              })
              .FirstOrDefault(d => d.Id == id);
 

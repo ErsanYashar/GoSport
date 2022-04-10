@@ -17,5 +17,6 @@ namespace GoSport.Core.ViewModel.Discipline
         [Display(Name = "Sport")]
         public int SportId { get; set; }
 
+
     }
 }
