@@ -1,5 +1,4 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using GoSport.Core.AutoMapper;
 using GoSport.Core.Services;
 using GoSport.Core.Services.Interfaces;
