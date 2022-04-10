@@ -5,5 +5,6 @@ namespace GoSport.Core.Services.Interfaces
     public interface IUsersService
     {
         IEnumerable<UsersViewModel> GetAllUsers();
+
     }
 }

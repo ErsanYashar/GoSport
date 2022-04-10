@@ -24,7 +24,7 @@ namespace GoSport.Test
             services.AddSingleton<IConfiguration>(new ConfigurationBuilder().Build());
             services.AddOptions();
             services.AddDbContext<ApplicationDbContext>(b => b.UseInMemoryDatabase("ApplicationDbContext").UseInternalServiceProvider(efServiceProvider));
-
+            services.AddLogging();
             services.AddIdentity<User, IdentityRole>()
           .AddDefaultTokenProviders()
           .AddEntityFrameworkStores<ApplicationDbContext>();

@@ -23,11 +23,12 @@ namespace GoSport.Core.Services.Interfaces
             var users = this.Context
                 .Users
                 .OrderBy(x => x.UserName)
-                .AsQueryable();
+                .ToList();
 
-            var usersViewModel = this.Mapper.Map<IQueryable<User>, IEnumerable<UsersViewModel>>(users);
+            var usersViewModel = this.Mapper.Map<IList<User>, IEnumerable<UsersViewModel>>(users);
 
             return usersViewModel;
         }
+
     }
 }
