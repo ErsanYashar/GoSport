@@ -39,7 +39,6 @@ namespace GoSport.Test
         [Fact]
         public void GetAllTownsShouldReturnCorrectCount()
         {
-            // Arrange
             var context = this.ServiceProvider.GetRequiredService<ApplicationDbContext>();
             var service = new TownService(this.Mapper, null, context);
             context.Add(new Town 
