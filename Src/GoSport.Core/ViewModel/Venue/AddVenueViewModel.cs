@@ -5,6 +5,7 @@ namespace GoSport.Core.ViewModel.Venue
 {
     public class AddVenueViewModel
     {
+
         [Required]
         [MinLength(ConstViewModel.minVenueNameLength, ErrorMessage = ConstViewModel.minVenueNameLengthhErrorMessage)]
         public string Name { get; set; }

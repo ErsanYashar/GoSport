@@ -24,6 +24,24 @@ namespace GoSport.Core.Services
             return venue;
         }
 
+        public VenueViewModel VenueById(int id)
+        {
+            var venue = this.Context
+              .Venues
+               .Select(x => new VenueViewModel
+               {
+                   Id = x.Id,
+                   Name = x.Name,
+                   Capacity = x.Capacity,
+                   ImageVenueUrl = x.ImageVenueUrl,
+                   Town = x.Town.Name,
+                   Address = x.Address,
+               })
+              .FirstOrDefault(v => v.Id == id);
+
+            return venue;
+        }
+
         public IEnumerable<VenueViewModel> AllVenuesByTownId(int townId)
         {
             var venues = this.Context
@@ -99,22 +117,5 @@ namespace GoSport.Core.Services
             return venueModel;
         }
 
-        public VenueViewModel VenueById(int id)
-        {
-            var venue = this.Context
-              .Venues
-               .Select(x => new VenueViewModel
-               {
-                   Id = x.Id,
-                   Name = x.Name,
-                   Capacity= x.Capacity,
-                   ImageVenueUrl = x.ImageVenueUrl,
-                   Town = x.Town.Name,
-                   Address = x.Address,
-               })
-              .FirstOrDefault(v => v.Id == id);
-
-            return venue;
-        }
     }
 }
