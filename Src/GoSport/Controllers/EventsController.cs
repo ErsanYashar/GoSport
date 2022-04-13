@@ -134,7 +134,7 @@ namespace GoSport.Controllers
         }
 
         [HttpPost]
-        public IActionResult EventsInTown(SearchTownViewModel model)
+        public IActionResult EventsInTown(SearchTownEventViewModel model)
         {
             if (!this.ModelState.IsValid)
             {

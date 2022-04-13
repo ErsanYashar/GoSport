@@ -20,7 +20,7 @@ namespace GoSport.Test
             userManager.CreateAsync(new User { UserName = "Ersan", FirstName = "Ersann", LastName = "Yashar" }
             , "Aa123456!").GetAwaiter().GetResult();
 
-            var organization = service.Add(new AddOrganizerViewModel
+            var organizer = service.Add(new AddOrganizerViewModel
             {
                 Name = "Test",
                 Description = "Description"
@@ -33,9 +33,9 @@ namespace GoSport.Test
                 Description = "Description",
             };
 
-            Assert.True(organization.Name.Equals(expectedOrganization.Name));
-            Assert.True(organization.Id.Equals(expectedOrganization.Id));
-            Assert.True(organization.Description.Equals(expectedOrganization.Description));
+            Assert.True(organizer.Name.Equals(expectedOrganization.Name));
+            Assert.True(organizer.Id.Equals(expectedOrganization.Id));
+            Assert.True(organizer.Description.Equals(expectedOrganization.Description));
         }
 
         [Fact]

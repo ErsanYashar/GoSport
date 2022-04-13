@@ -1,10 +1,6 @@
 ﻿using GoSport.Core.ViewModel.Event;
+using GoSport.Core.ViewModel.Venue;
 using GoSport.Infrastructure.Data.DateModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GoSport.Core.Services.Interfaces
 {
@@ -18,7 +14,7 @@ namespace GoSport.Core.Services.Interfaces
         UpdateEventViewModel UpdateEvent(UpdateEventViewModel model);
         EventViewModel GetEventById(int id);
         void DeleteEvent(EventViewModel model);
-        IEnumerable<EventViewModel> AllEventsInTown(SearchTownViewModel model);
+        IEnumerable<EventViewModel> AllEventsInTown(SearchTownEventViewModel model);
 
         bool IsUserParticipate(string userId, int eventId);
         bool CheckForFreeSpace(int eventId);
