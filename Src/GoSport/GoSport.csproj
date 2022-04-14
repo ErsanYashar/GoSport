@@ -25,4 +25,10 @@
     <ProjectReference Include="..\GoSport.Infrastructure\GoSport.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\img\stopwatch-259375_1280.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

@@ -1,18 +1,14 @@
 ﻿using GoSport.Core.Services;
 using GoSport.Core.Services.Interfaces;
 using GoSport.Core.ViewModel.Event;
-using GoSport.Core.ViewModel.Organizer;
 using GoSport.Core.ViewModel.Sport;
 using GoSport.Infrastructure.Data;
 using GoSport.Infrastructure.Data.DateModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace GoSport.Test

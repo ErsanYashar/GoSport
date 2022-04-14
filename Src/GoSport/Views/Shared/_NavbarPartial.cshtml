@@ -28,13 +28,12 @@
         else
         {
 
-            <ul class="nav navbar-nav text-right">
-                
+            <ul class="nav navbar-nav text-right">              
                 <li class="nav-link">
                     <a asp-area="" asp-controller="Events" asp-action="MyEvents" class="nav-link"><i class="fas fa-calendar-alt"></i> My Events</a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav ml-auto">
+            <ul class="nav navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link" asp-area="Identity" asp-controller="Users" asp-action="UpdateAccount"><i class="fas fa-user-edit"></i> Hello @UserManager.GetUserName(User)</a>
                 </li>
@@ -46,7 +45,7 @@
     }
     else
     {
-        <ul class="nav navbar-nav ml-auto">
+        <ul class="nav navbar-nav ms-auto">
             <li class="nav-item">
                 <a class="nav-link" asp-area="Identity" asp-controller="Users" asp-action="Register"><i class="fas fa-user-plus"></i>Register</a>
             </li>
