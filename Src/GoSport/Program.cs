@@ -30,6 +30,7 @@ builder.Services.AddTransient<IEventsService, EventsService>();
 
 
 
+
 builder.Services.AddDefaultIdentity<User>(options =>
    {
        options.SignIn.RequireConfirmedAccount = false;
@@ -80,10 +81,6 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-//app.MapControllerRoute(
-//    name: "areas",
-//    pattern: "user/{*register}",
-//    defaults: new { controller = "User", action = "Register" });
 
 app.MapControllerRoute(
    name: "areas",
@@ -92,13 +89,6 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
-//app.MapAreaControllerRoute(
-//    name: "areas",
-//    areaName: "Identity",
-//    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
-
 
 app.MapRazorPages();
 

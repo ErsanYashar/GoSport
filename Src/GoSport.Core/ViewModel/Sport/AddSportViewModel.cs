@@ -1,10 +1,5 @@
 ﻿using GoSport.Core.Constants;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GoSport.Core.ViewModel.Sport
 {
@@ -12,9 +7,12 @@ namespace GoSport.Core.ViewModel.Sport
     {
         [Required]
         [MinLength(ConstViewModel.MinSportNameLength, ErrorMessage = ConstViewModel.MinSportErrorMessage)]
+        [MaxLength(ConstViewModel.MaxSportNameLength, ErrorMessage = ConstViewModel.MaxSportErrorMessage)]
         public string Name { get; set; }
 
         [Required]
+        [MinLength(ConstViewModel.MinDescriptionLength, ErrorMessage = ConstViewModel.MinDescriptionErrorMessage)]
+        [MaxLength(ConstViewModel.MaxDescriptionLength, ErrorMessage = ConstViewModel.MaxDescriptionErrorMessage)]
         public string Description { get; set; }
 
 

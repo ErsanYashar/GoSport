@@ -3,11 +3,7 @@ using GoSport.Core.ViewModel.Discipline;
 using GoSport.Infrastructure.Data;
 using GoSport.Infrastructure.Data.DateModels;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace GoSport.Test

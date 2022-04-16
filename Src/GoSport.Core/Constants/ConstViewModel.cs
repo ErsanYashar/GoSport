@@ -38,7 +38,7 @@ namespace GoSport.Core.Constants
 
 
         public const int MinTownNameLength = 2;
-        public const int MaxTownNameLength = 30;
+        public const int MaxTownNameLength = 50;
         public const string TownNameMinErrorMessage = "the name of the city should be can not be less 2 characters";
         public const string TownReg = "[a-zA-z\\s]+";
         public const string TownRegErrorMessage = "Town name contains invalid symbols!";
@@ -100,5 +100,47 @@ namespace GoSport.Core.Constants
         public const string NumberOfParticipantsErrorMessage = "Тhe number of participants should be between 1 and 50";
 
 
+        public const int maxNameDiscriptionLength = 30;
+        public const string maxNameDiscriptionLengthErrorMessage = "The name must not be more than 30 characters";
+
+        public const int maxDescriptionDiscriptionLength = 100;
+        public const string maxDescriptionDiscriptionLengthErrorMessage = "The description must not be more than 100 characters";
+
+        public const int maxMessagesFullNameLength = 30;
+        public const string maxMessagesFullNameErrorMessage = "The full name must not be more than 30 characters";
+
+        public const int maxSubjectLength = 30;
+        public const string maxSubjectLengthErrorMessage = "The subject must not be more than 30 characters";
+
+        public const int maxContentLength = 100;
+        public const string maxContentLengthErrorMessage = "The content must not be more than 30 characters";
+
+        public const int maxEvendNameLength = 30;
+        public const string maxEvendNameLengthErrorMessage = "The evend name must not be more than 30 characters";
+
+        public const int maxOrganizerNameLength = 30;
+        public const string maxOrganizerNameLengthErrorMessage = "The organizer must not be more than 30 characters";
+
+        public const int maxDescriptionLength = 100;
+        public const string maxDescriptionLengthErrorMessage = "The description must not be more than 100 characters";
+
+        public const int MaxSportNameLength = 50;
+        public const string MaxSportErrorMessage = "The sport must not be more than 50 characters";
+
+        public const int MinDescriptionLength = 20;
+        public const string MinDescriptionErrorMessage = "The description must be at least 20 characters long!";
+
+        public const int MaxDescriptionLength = 800;
+        public const string MaxDescriptionErrorMessage = "The description must not be more than 800 characters";
+
+        public const string TownNameMaxErrorMessage = "The town name must not be more than 50 characters";
+
+        public const int maxVenueNameLength = 50;
+        public const string maxVenueNameLengthhErrorMessage = "The venue name must not be more than 50 characters";
+
+        public const int minAddressLength = 5;
+        public const string minAddressErrorMessage = "The address must be at least 5 characters long!";
+        public const int maxAddressLength = 50;
+        public const string maxAddressErrorMessage = "The address name must not be more than 50 characters";
     }
 }

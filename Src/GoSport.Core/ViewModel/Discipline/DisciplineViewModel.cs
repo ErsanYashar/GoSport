@@ -9,10 +9,12 @@ namespace GoSport.Core.ViewModel.Discipline
 
         [Required]
         [MinLength(ConstViewModel.minDisciplineNameLength, ErrorMessage = ConstViewModel.MinDisciplineNameLengthErrorMessage)]
+        [MaxLength(ConstViewModel.maxNameDiscriptionLength, ErrorMessage = ConstViewModel.maxNameDiscriptionLengthErrorMessage)]
         public string Name { get; set; }
 
 
         [Required]
+        [MaxLength(ConstViewModel.maxDescriptionDiscriptionLength, ErrorMessage = ConstViewModel.maxDescriptionDiscriptionLengthErrorMessage)]
         [MinLength(ConstViewModel.minDisciplineDescriptionLength, ErrorMessage = ConstViewModel.MinDisciplineDescriptionLengthErrorMessage)]
         public string Description { get; set; }
 

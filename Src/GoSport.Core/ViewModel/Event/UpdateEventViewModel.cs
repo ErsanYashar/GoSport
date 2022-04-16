@@ -9,6 +9,7 @@ namespace GoSport.Core.ViewModel.Event
 
         [Required]
         [MinLength(ConstViewModel.minEvendNameLength, ErrorMessage = ConstViewModel.minEvendNameLengthErrorMessage)]
+        [MaxLength(ConstViewModel.maxEvendNameLength, ErrorMessage = ConstViewModel.maxEvendNameLengthErrorMessage)]
         [Display(Name = "Event Name")]
         public string EventName { get; set; }
 

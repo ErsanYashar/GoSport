@@ -9,6 +9,7 @@ namespace GoSport.Core.ViewModel.Message
 
         [Required]
         [MinLength(ConstViewModel.minMessagesFullNameLength, ErrorMessage = ConstViewModel.mindMessagesFullNameErrorMessage)]
+        [MaxLength(ConstViewModel.maxMessagesFullNameLength, ErrorMessage = ConstViewModel.maxMessagesFullNameErrorMessage)]
         [Display(Name = "Full Name")]
         public string FullName { get; set; }
 
@@ -18,10 +19,12 @@ namespace GoSport.Core.ViewModel.Message
 
         [Required]
         [MinLength(ConstViewModel.minSubjectLength, ErrorMessage = ConstViewModel.minSubjectLengthErrorMessage)]
+        [MaxLength(ConstViewModel.maxSubjectLength, ErrorMessage = ConstViewModel.maxSubjectLengthErrorMessage)]
         public string Subject { get; set; }
 
         [Required]
         [MinLength(ConstViewModel.minContentLength, ErrorMessage = ConstViewModel.minContentLengthErrorMessage)]
+        [MaxLength(ConstViewModel.maxContentLength, ErrorMessage = ConstViewModel.maxContentLengthErrorMessage)]
         public string Content { get; set; }
     }
 }

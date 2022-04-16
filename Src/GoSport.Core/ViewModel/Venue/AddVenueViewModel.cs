@@ -8,7 +8,12 @@ namespace GoSport.Core.ViewModel.Venue
 
         [Required]
         [MinLength(ConstViewModel.minVenueNameLength, ErrorMessage = ConstViewModel.minVenueNameLengthhErrorMessage)]
+        [MaxLength(ConstViewModel.maxVenueNameLength, ErrorMessage = ConstViewModel.maxVenueNameLengthhErrorMessage)]
         public string Name { get; set; }
+
+        [Required]
+        [MinLength(ConstViewModel.minAddressLength, ErrorMessage = ConstViewModel.minAddressErrorMessage)]
+        [MaxLength(ConstViewModel.maxAddressLength, ErrorMessage = ConstViewModel.maxAddressErrorMessage)]
         public string Address { get; set; }
 
         [Required]

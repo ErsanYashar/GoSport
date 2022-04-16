@@ -9,6 +9,7 @@ namespace GoSport.Core.ViewModel.Town
 
         [Required]
         [MinLength(ConstViewModel.MinTownNameLength, ErrorMessage = ConstViewModel.TownNameMinErrorMessage)]
+        [MaxLength(ConstViewModel.MaxTownNameLength, ErrorMessage = ConstViewModel.TownNameMaxErrorMessage)]
         [RegularExpression(ConstViewModel.TownReg, ErrorMessage = ConstViewModel.TownRegErrorMessage)]
         public string Name { get; set; }
 
