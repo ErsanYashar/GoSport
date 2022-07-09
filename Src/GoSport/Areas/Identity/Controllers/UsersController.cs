@@ -42,11 +42,11 @@ namespace GoSport.Areas.Identity.Controllers
 
         //public async Task<IActionResult> AddRole()
         //{
-        //    if (!await this.roleManager.RoleExistsAsync("User"))
+        //    if (!await this.roleManager.RoleExistsAsync("Admin"))
         //    {
         //        await this.roleManager.CreateAsync(new IdentityRole
         //        {
-        //            Name = "User"
+        //            Name = "Admin"
         //        });
         //    }
 
@@ -82,7 +82,7 @@ namespace GoSport.Areas.Identity.Controllers
             else
             {
                 this.ViewData["Error"] = ConstCore.UsernameEror;
-                this.ViewData[ConstCore.Town] = this.townService.GetAllTownNames();
+                //this.ViewData[ConstCore.Town] = this.townService.GetAllTownNames();
                 return this.View(model);
             }
 
@@ -185,7 +185,7 @@ namespace GoSport.Areas.Identity.Controllers
             return this.View();
         }
 
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult All(int? page)
         {
             var users = this.usersService.GetAllUsers();

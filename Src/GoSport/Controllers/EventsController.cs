@@ -104,13 +104,13 @@ namespace GoSport.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Details(int id)
         {
-            var @event = this.eventsService.GetEventById(id);
-            if (@event == null)
+            var detailEvent = this.eventsService.GetEventById(id);
+            if (detailEvent == null)
             {
                 this.TempData["Message"] = ConstCore.EventDoesNotExist;
                 return this.RedirectToAction("Invalid", "Home", new { area = "" });
             }
-            return this.View(@event);
+            return this.View(detailEvent);
         }
 
         [Authorize(Roles = "Admin")]

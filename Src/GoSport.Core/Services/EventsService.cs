@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using GoSport.Core.Services.Interfaces;
 using GoSport.Core.ViewModel.Event;
-using GoSport.Core.ViewModel.Venue;
 using GoSport.Infrastructure.Data;
 using GoSport.Infrastructure.Data.DateModels;
 using Microsoft.AspNetCore.Identity;
